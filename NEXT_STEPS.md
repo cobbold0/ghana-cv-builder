@@ -11,7 +11,7 @@ It must always reflect the actual current state of the project.
 3. **Google Search Console:** add a property for `https://ghanacv.cobbold.dev/` (URL-prefix) or the `cobbold.dev` domain. Verify with a DNS TXT record, or set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` to the HTML-tag code and redeploy. Then submit `https://ghanacv.cobbold.dev/sitemap.xml` under **Sitemaps**. Optionally do the same in Bing Webmaster Tools.
 4. **Provide a contact email address** for the site. The privacy policy tells users to contact the site owner, and ad networks expect a way to reach you. Once you have it, ask Claude to add a contact section.
 5. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission. The site doesn't store CV data on a server, but analytics and ads do process visitor data.
-6. **Analytics (optional but recommended):** create a Google Analytics 4 property and set `NEXT_PUBLIC_GA_MEASUREMENT_ID`. Decide whether you need a cookie consent banner for your audience.
+6. **Analytics:** Google Analytics (`G-PP7163Z5PK`) is built into production builds. After the next deploy, confirm visits appear under Reports → Realtime. Decide whether you need a cookie consent banner for your audience.
 7. **Advertising, when ready:** apply for Google AdSense once the site is live. After approval, set `NEXT_PUBLIC_ADSENSE_CLIENT` and `NEXT_PUBLIC_ADSENSE_SLOT`; `/ads.txt` is generated automatically. Note that AdSense reads `ads.txt` from the root domain, so on a subdomain you may also need an `ads.txt` on `cobbold.dev` (check AdSense's guidance when you apply). If you'll serve personalised ads to visitors from regions that require consent (e.g. the EU/UK), you'll need a certified consent tool — a business/legal decision.
 8. **Review the content** — guides, example CVs and template descriptions — and approve the launch.
 
@@ -50,5 +50,6 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Mobile:** no horizontal overflow on the builder in edit or preview mode; full journey passes on a Pixel 7 viewport.
 - **Performance:** all pages statically generated; content pages ship only the framework baseline plus a tiny ad component; PDF library loaded on demand; fonts subsetted and preloaded.
 - **Security and privacy:** no secrets in the repository; no server-side CV storage; JSON-LD escaped; security headers configured.
+- **Google Analytics 4** (`G-PP7163Z5PK`) loads on production builds, with product events that never include CV content.
 - **Monetisation hooks:** labelled ad slots on content pages only (never in the builder), `ads.txt` generation, analytics events without CV content — all disabled until configured.
 - **README** documents setup, environment variables, testing, deployment and architecture.

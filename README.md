@@ -47,7 +47,7 @@ See [`.env.example`](.env.example). None are secrets and all are optional in dev
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Public site URL for canonical URLs, sitemap, robots.txt and Open Graph. Defaults to `https://ghanacv.cobbold.dev` in production builds and `http://localhost:3000` in development. |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Google Search Console HTML-tag verification code (optional). |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Enables Google Analytics 4. |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 ID. Production defaults to `G-PP7163Z5PK`; set another ID to override or `off` to disable. |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | Enables the AdSense script on content pages and serves `/ads.txt`. |
 | `NEXT_PUBLIC_ADSENSE_SLOT` | Ad unit used by in-content `AdSlot`s. |
 | `NEXT_PUBLIC_AD_PLACEHOLDERS` | `true` shows labelled ad placeholders (development only). |
