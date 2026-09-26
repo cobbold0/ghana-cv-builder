@@ -29,7 +29,8 @@ export function AdSlot({ className = "" }: { className?: string }) {
 
   if (live) {
     return (
-      <aside aria-label="Advertisement" className={`my-10 ${className}`}>
+      // Hidden entirely when AdSense has no ad to show (e.g. before approval), so no empty box appears.
+      <aside aria-label="Advertisement" className={`my-10 has-[ins[data-ad-status=unfilled]]:hidden ${className}`}>
         <p className="mb-1 text-center text-[11px] tracking-wide text-slate-400 uppercase">Advertisement</p>
         <ins
           ref={ref}
