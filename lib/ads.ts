@@ -3,8 +3,11 @@
  * examples, homepage) — never in the CV builder, preview or export controls.
  */
 export const ADS = {
-  /** e.g. "ca-pub-1234567890123456" — provided by the owner after AdSense approval. */
-  client: process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "",
+  /** AdSense publisher. Production defaults to the site's account; set the env var to override, or "off" to disable. */
+  client:
+    process.env.NEXT_PUBLIC_ADSENSE_CLIENT === "off"
+      ? ""
+      : process.env.NEXT_PUBLIC_ADSENSE_CLIENT || (process.env.NODE_ENV === "production" ? "ca-pub-5952797612434262" : ""),
   /** Display ad unit id for in-content placements. */
   slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT ?? "",
   /** Show labelled placeholder boxes (development only). */
