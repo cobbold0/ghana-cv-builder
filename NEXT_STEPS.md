@@ -1,49 +1,41 @@
 # Next Steps
 
-## Phase 0 — Setup (week 1)
-- [ ] Scaffold Next.js + TypeScript + Tailwind; init shadcn/ui
-- [ ] Add ESLint, Prettier, Vitest, Playwright; CI (GitHub Actions: lint, typecheck, test)
-- [ ] Create Supabase project; local dev with Supabase CLI
-- [ ] `.env.example` with required keys
-- [ ] Deploy empty app to Vercel; connect domain
+This file is maintained by Claude Code.
 
-## Phase 1 — Builder MVP (weeks 2–4)
-- [ ] Zod CV schema (`src/features/cv/schema.ts`)
-- [ ] Editor sections with React Hook Form; localStorage autosave
-- [ ] Live preview with 3 free templates
-- [ ] PDF export via `@react-pdf/renderer` (watermarked)
-- [ ] Mobile usability pass on a low-end Android device
+It must always reflect the actual current state of the project.
 
-## Phase 2 — Accounts (week 5)
-- [ ] Supabase Auth: phone OTP + Google
-- [ ] `profiles`, `cvs` tables with RLS
-- [ ] Migrate local draft to account on sign-up
-- [ ] Multiple CVs, duplicate, delete
+## Owner must do
 
-## Phase 3 — Payments (weeks 6–7)
-- [ ] Paystack account (business verification)
-- [ ] `orders`, `entitlements` tables
-- [ ] Checkout Server Action + inline popup
-- [ ] Webhook with signature verification + idempotency
-- [ ] Clean PDF and premium templates gated by entitlement
-- [ ] E2E test with Paystack test MoMo numbers
+_To be populated by Claude Code._
 
-## Phase 4 — Launch (week 8)
-- [ ] Marketing home, pricing, 5 template pages, 5 guides
-- [ ] Sitemap, robots, metadata, OG images
-- [ ] Analytics + Sentry
-- [ ] Privacy policy and terms (Act 843)
-- [ ] Soft launch with 50 students/NSS personnel; collect feedback
+Only include actions that require the owner to perform them personally. Examples:
 
-## Phase 5 — Post-launch
-- [ ] AI assistant (summary, bullets, tailor to job)
-- [ ] Cover letter builder
-- [ ] Import existing CV
-- [ ] Remaining SEO content plan
-- [ ] Institutional licences outreach
+- Create/configure external accounts
+- Provide API credentials
+- Configure production secrets
+- Configure domain/DNS
+- Connect analytics
+- Apply for advertising
+- Configure payment provider
+- Review legal/privacy requirements
+- Approve production launch
 
-## Open questions
-- Domain and brand name?
-- Phone OTP SMS provider (Twilio vs local provider like Hubtel/Arkesel) — cost per SMS?
-- Final launch pricing — run a price test in first month?
-- Who does Pro Review (recruiter partners)?
+Do not list tasks that Claude can perform autonomously.
+
+## Optional improvements
+
+_To be populated by Claude Code._
+
+List useful improvements that are not required for the current MVP launch.
+
+Prioritize them by practical value.
+
+## Completed
+
+_To be populated by Claude Code._
+
+List major functionality that has actually been implemented and verified.
+
+Do not list planned functionality here.
+
+Do not claim something is complete unless it has been tested or otherwise verified.
