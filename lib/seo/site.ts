@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const PRODUCTION_URL = "https://ghanacv.cobbold.dev";
+// Production builds default to the live domain so canonical URLs and the sitemap are always correct.
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.NODE_ENV === "production" ? PRODUCTION_URL : "http://localhost:3000");
 
 export const SITE = {
   name: "Ghana CV Builder",

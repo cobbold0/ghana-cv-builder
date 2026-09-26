@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: SITE.description,
   applicationName: SITE.name,
   formatDetection: { telephone: false, email: false, address: false },
+  // Google Search Console HTML-tag verification (optional; DNS verification also works).
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
 export const viewport: Viewport = {

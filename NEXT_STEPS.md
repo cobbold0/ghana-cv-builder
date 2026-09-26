@@ -6,16 +6,14 @@ It must always reflect the actual current state of the project.
 
 ## Owner must do
 
-1. **Choose and connect a domain.** Buy the domain, create a hosting project (Vercel is recommended — import this GitHub repository), and point DNS at it.
-2. **Set production environment variables** in the hosting dashboard, then redeploy:
-   - `NEXT_PUBLIC_SITE_URL` — your final URL, e.g. `https://www.example.com` (required; canonical URLs and the sitemap depend on it).
-3. **Merge the work into your main branch** (it is on `claude/amazing-faraday-spzpl3`) so production deploys from it.
+1. **Deploy to `ghanacv.cobbold.dev`.** Import the repository into Vercel (production branch `main`), add the domain `ghanacv.cobbold.dev` to the project, and create the DNS record Vercel shows you (usually a `CNAME` for `ghanacv` pointing to `cname.vercel-dns.com`) at the DNS provider for `cobbold.dev`. No environment variables are required: production builds already use `https://ghanacv.cobbold.dev` for canonical URLs, Open Graph and the sitemap.
+2. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`; the automated session wasn't permitted to delete it.
+3. **Google Search Console:** add a property for `https://ghanacv.cobbold.dev/` (URL-prefix) or the `cobbold.dev` domain. Verify with a DNS TXT record, or set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` to the HTML-tag code and redeploy. Then submit `https://ghanacv.cobbold.dev/sitemap.xml` under **Sitemaps**. Optionally do the same in Bing Webmaster Tools.
 4. **Provide a contact email address** for the site. The privacy policy tells users to contact the site owner, and ad networks expect a way to reach you. Once you have it, ask Claude to add a contact section.
 5. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission. The site doesn't store CV data on a server, but analytics and ads do process visitor data.
-6. **Google Search Console:** verify the domain and submit `https://<your-domain>/sitemap.xml`.
-7. **Analytics (optional but recommended):** create a Google Analytics 4 property and set `NEXT_PUBLIC_GA_MEASUREMENT_ID`. Decide whether you need a cookie consent banner for your audience.
-8. **Advertising, when ready:** apply for Google AdSense once the site is live on its domain. After approval, set `NEXT_PUBLIC_ADSENSE_CLIENT` and `NEXT_PUBLIC_ADSENSE_SLOT`; `/ads.txt` is generated automatically. If you'll serve personalised ads to visitors from regions that require consent (e.g. the EU/UK), you'll need a certified consent tool — this is a business/legal decision.
-9. **Review the content** — guides, example CVs and template descriptions — and approve the launch.
+6. **Analytics (optional but recommended):** create a Google Analytics 4 property and set `NEXT_PUBLIC_GA_MEASUREMENT_ID`. Decide whether you need a cookie consent banner for your audience.
+7. **Advertising, when ready:** apply for Google AdSense once the site is live. After approval, set `NEXT_PUBLIC_ADSENSE_CLIENT` and `NEXT_PUBLIC_ADSENSE_SLOT`; `/ads.txt` is generated automatically. Note that AdSense reads `ads.txt` from the root domain, so on a subdomain you may also need an `ads.txt` on `cobbold.dev` (check AdSense's guidance when you apply). If you'll serve personalised ads to visitors from regions that require consent (e.g. the EU/UK), you'll need a certified consent tool — a business/legal decision.
+8. **Review the content** — guides, example CVs and template descriptions — and approve the launch.
 
 ## Optional improvements
 
@@ -47,7 +45,7 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Loading states:** builder loading placeholder, "Preparing PDF…" button state, photo processing state.
 - **Local persistence:** autosave, restore on reload, save on page close, backups (save/open), salvage of damaged drafts.
 - **Example CVs:** six fictional examples with pages and one-click loading into the builder.
-- **SEO:** unique titles and descriptions, canonical URLs, Open Graph image, BreadcrumbList/Article/WebSite/WebApplication structured data, sitemap, robots.txt, noindex builder, one H1 per page, internal linking between guides, examples and templates. Checked automatically for every sitemap URL.
+- **SEO:** production domain `https://ghanacv.cobbold.dev` built in (sitemap, robots.txt, canonical and Open Graph URLs verified against a production build); optional Search Console verification tag; unique titles and descriptions, canonical URLs, Open Graph image, BreadcrumbList/Article/WebSite/WebApplication structured data, sitemap, robots.txt, noindex builder, one H1 per page, internal linking between guides, examples and templates. Checked automatically for every sitemap URL.
 - **Accessibility:** labelled fields, error messages linked to inputs, keyboard-operable controls, native dialogs, skip link, visible focus; no axe WCAG 2.1 A/AA violations on the tested pages.
 - **Mobile:** no horizontal overflow on the builder in edit or preview mode; full journey passes on a Pixel 7 viewport.
 - **Performance:** all pages statically generated; content pages ship only the framework baseline plus a tiny ad component; PDF library loaded on demand; fonts subsetted and preloaded.
