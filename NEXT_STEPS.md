@@ -13,7 +13,7 @@ It must always reflect the actual current state of the project.
 5. **my-portfolio:** merge `Production` back into `Develop` (an `ads.txt` commit was pushed directly to `Production`).
 6. **Search Console:** if the sitemap still shows "could not be read", remove and resubmit `sitemap.xml`, and use URL Inspection → Test live URL.
 7. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission.
-8. **Analytics:** confirm visits appear in GA4 (`G-PP7163Z5PK`) under Reports → Realtime, and decide whether you need a cookie consent banner.
+8. **Analytics:** confirm visits appear in GA4 (`G-PP7163Z5PK`) under Reports → Realtime.
 
 ## Optional improvements
 
@@ -53,5 +53,7 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Google Analytics 4** (`G-PP7163Z5PK`) loads on production builds, with product events that never include CV content.
 - **Deployment:** live on Vercel at `https://ghanacv.cobbold.dev` (DNS on Cloudflare); `ads.txt` verified on both `ghanacv.cobbold.dev` and `cobbold.dev`.
 - **AdSense** publisher `ca-pub-5952797612434262` wired in: verification meta tag on every page, ad script on content pages only, `/ads.txt`.
+- **Cookie consent:** Google Consent Mode v2 — analytics and ad storage denied by default for EEA/UK/Swiss visitors until they answer Google's AdSense consent message; granted elsewhere. "Cookie settings" footer link reopens the message. Verified in a browser that consent defaults precede the Analytics config.
+- **Ads:** two in-content ad units on the long guides (how to write a CV, CV format, Ghana CV, professional CV), one on other content pages, none in the builder; unfilled slots are hidden.
 - **Monetisation hooks:** labelled ad slots on content pages only (never in the builder), `ads.txt` generation, analytics events without CV content — all disabled until configured.
 - **README** documents setup, environment variables, testing, deployment and architecture.

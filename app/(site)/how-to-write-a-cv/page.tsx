@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentPage, InlineCta } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
 import { pageMetadata } from "@/lib/seo/site";
@@ -113,6 +114,8 @@ export default function Page() {
         National service, internships, industrial attachment, part-time jobs, volunteering, family business work and leadership roles in clubs or
         associations all count, as long as you describe what you actually did.
       </p>
+
+      <AdSlot />
 
       <h2>Step 4: Education</h2>
       <p>

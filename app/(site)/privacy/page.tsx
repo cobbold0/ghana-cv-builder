@@ -43,6 +43,14 @@ export default function Page() {
         and other websites. You can manage personalised advertising in your Google account&apos;s ad settings.
       </p>
 
+      <h2>Cookies and your choices</h2>
+      <p>
+        Visitors in the European Economic Area, the United Kingdom and Switzerland are asked for consent by Google&apos;s consent message before
+        analytics or advertising cookies are used. Until you choose, analytics and ads run without cookies. Everywhere else, these cookies are used
+        by default. You can change your choice at any time using the <em>Cookie settings</em> link at the bottom of each page (where available),
+        or by clearing this site&apos;s cookies in your browser.
+      </p>
+
       <h2>Hosting</h2>
       <p>
         Like any website, our hosting provider automatically processes technical data such as IP addresses and browser information to deliver pages

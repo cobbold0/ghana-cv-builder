@@ -3,7 +3,7 @@ import { ADS } from "@/lib/ads";
 
 // Production defaults to the site's GA4 property; set the env var to override (or to "off" to disable).
 const GA_ENV = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-const GA_ID = GA_ENV === "off" ? "" : GA_ENV || (process.env.NODE_ENV === "production" ? "G-PP7163Z5PK" : "");
+export const GA_ID = GA_ENV === "off" ? "" : GA_ENV || (process.env.NODE_ENV === "production" ? "G-PP7163Z5PK" : "");
 
 /** Analytics and ad scripts load only when the owner has configured them. */
 export function ThirdPartyScripts({ analytics = false, ads = false }: { analytics?: boolean; ads?: boolean }) {

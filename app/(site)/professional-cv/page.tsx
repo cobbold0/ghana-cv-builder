@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentPage, InlineCta } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
 import { pageMetadata } from "@/lib/seo/site";
@@ -56,6 +57,8 @@ export default function Page() {
         </li>
       </ul>
       <p>Only include numbers you can explain in an interview.</p>
+
+      <AdSlot />
 
       <h2>4. Tailor it for every application</h2>
       <p>

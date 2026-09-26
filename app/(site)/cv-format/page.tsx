@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentPage, InlineCta } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
 import { pageMetadata } from "@/lib/seo/site";
@@ -100,6 +101,8 @@ export default function Page() {
         Length matters less than relevance. A tight one-page CV beats two pages padded with duties from a job ten years ago. If you are over two
         pages, shorten older roles to one line each.
       </p>
+
+      <AdSlot />
 
       <h2>Layout and design</h2>
       <ul>

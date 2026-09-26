@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AdSlot } from "@/components/ads/AdSlot";
 import { ContentPage, InlineCta } from "@/components/content/ContentPage";
 import { TemplateThumbnail } from "@/components/cv/TemplateThumbnail";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
@@ -85,6 +86,8 @@ export default function Page() {
           <strong>Bullets:</strong> the tasks you did and anything you improved
         </li>
       </ul>
+
+      <AdSlot />
 
       <h2>Education and exam results</h2>
       <p>

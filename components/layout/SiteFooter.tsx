@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ADS } from "@/lib/ads";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 
 const GROUPS = [
   {
@@ -57,9 +59,10 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="border-t border-slate-200">
-        <p className="mx-auto max-w-6xl px-4 py-6 text-xs text-slate-500">
-          © {new Date().getFullYear()} Ghana CV Builder. Your CV is created and stored on your own device.
-        </p>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-xs text-slate-500">
+          <p>© {new Date().getFullYear()} Ghana CV Builder. Your CV is created and stored on your own device.</p>
+          {ADS.client ? <CookieSettingsButton /> : null}
+        </div>
       </div>
     </footer>
   );

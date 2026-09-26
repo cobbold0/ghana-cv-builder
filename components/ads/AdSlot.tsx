@@ -31,7 +31,7 @@ export function AdSlot({ className = "" }: { className?: string }) {
     return (
       // Hidden entirely when AdSense has no ad to show (e.g. before approval), so no empty box appears.
       <aside aria-label="Advertisement" className={`my-10 has-[ins[data-ad-status=unfilled]]:hidden ${className}`}>
-        <p className="mb-1 text-center text-[11px] tracking-wide text-slate-400 uppercase">Advertisement</p>
+        <p className="mb-1 text-center text-[11px] tracking-wide text-slate-500 uppercase">Advertisement</p>
         <ins
           ref={ref}
           className="adsbygoogle block min-h-[100px]"
@@ -46,7 +46,7 @@ export function AdSlot({ className = "" }: { className?: string }) {
   if (ADS.placeholders) {
     return (
       <aside aria-label="Advertisement placeholder" className={`my-10 ${className}`}>
-        <div className="flex h-[120px] items-center justify-center rounded-lg border border-dashed border-slate-300 text-xs tracking-wide text-slate-400 uppercase">
+        <div className="flex h-[120px] items-center justify-center rounded-lg border border-dashed border-slate-300 text-xs tracking-wide text-slate-500 uppercase">
           Advertisement placeholder
         </div>
       </aside>
