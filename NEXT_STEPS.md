@@ -6,14 +6,14 @@ It must always reflect the actual current state of the project.
 
 ## Owner must do
 
-1. **Deploy to `ghanacv.cobbold.dev`.** Import the repository into Vercel (production branch `main`), add the domain `ghanacv.cobbold.dev` to the project, and create the DNS record Vercel shows you (usually a `CNAME` for `ghanacv` pointing to `cname.vercel-dns.com`) at the DNS provider for `cobbold.dev`. No environment variables are required: production builds already use `https://ghanacv.cobbold.dev` for canonical URLs, Open Graph and the sitemap.
-2. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`; the automated session wasn't permitted to delete it.
-3. **Google Search Console:** add a property for `https://ghanacv.cobbold.dev/` (URL-prefix) or the `cobbold.dev` domain. Verify with a DNS TXT record, or set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` to the HTML-tag code and redeploy. Then submit `https://ghanacv.cobbold.dev/sitemap.xml` under **Sitemaps**. Optionally do the same in Bing Webmaster Tools.
-4. **Provide a contact email address** for the site. The privacy policy tells users to contact the site owner, and ad networks expect a way to reach you. Once you have it, ask Claude to add a contact section.
-5. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission. The site doesn't store CV data on a server, but analytics and ads do process visitor data.
-6. **Analytics:** Google Analytics (`G-PP7163Z5PK`) is built into production builds. After the next deploy, confirm visits appear under Reports → Realtime. Decide whether you need a cookie consent banner for your audience.
-7. **Advertising, when ready:** apply for Google AdSense once the site is live. After approval, set `NEXT_PUBLIC_ADSENSE_CLIENT` and `NEXT_PUBLIC_ADSENSE_SLOT`; `/ads.txt` is generated automatically. Note that AdSense reads `ads.txt` from the root domain, so on a subdomain you may also need an `ads.txt` on `cobbold.dev` (check AdSense's guidance when you apply). If you'll serve personalised ads to visitors from regions that require consent (e.g. the EU/UK), you'll need a certified consent tool — a business/legal decision.
-8. **Review the content** — guides, example CVs and template descriptions — and approve the launch.
+1. **AdSense:** in the `cobbold.dev` site, tick "I've published the ads.txt file", click **Verify**, then **Request review**. (`https://cobbold.dev/ads.txt` is served by the `my-portfolio` project and covers every `*.cobbold.dev` site.)
+2. **After AdSense approval:** create a Display ad unit (Ads → By ad unit) and set its ID as `NEXT_PUBLIC_ADSENSE_SLOT` in Vercel (or give it to Claude to build in), then redeploy. Turn on the consent message under **Privacy & messaging** before serving ads to EEA/UK visitors.
+3. **Provide a contact email address** for the site (About/Privacy pages). AdSense reviewers look for one.
+4. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`.
+5. **my-portfolio:** merge `Production` back into `Develop` (an `ads.txt` commit was pushed directly to `Production`).
+6. **Search Console:** if the sitemap still shows "could not be read", remove and resubmit `sitemap.xml`, and use URL Inspection → Test live URL.
+7. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission.
+8. **Analytics:** confirm visits appear in GA4 (`G-PP7163Z5PK`) under Reports → Realtime, and decide whether you need a cookie consent banner.
 
 ## Optional improvements
 
@@ -51,5 +51,7 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Performance:** all pages statically generated; content pages ship only the framework baseline plus a tiny ad component; PDF library loaded on demand; fonts subsetted and preloaded.
 - **Security and privacy:** no secrets in the repository; no server-side CV storage; JSON-LD escaped; security headers configured.
 - **Google Analytics 4** (`G-PP7163Z5PK`) loads on production builds, with product events that never include CV content.
+- **Deployment:** live on Vercel at `https://ghanacv.cobbold.dev` (DNS on Cloudflare); `ads.txt` verified on both `ghanacv.cobbold.dev` and `cobbold.dev`.
+- **AdSense** publisher `ca-pub-5952797612434262` wired in: verification meta tag on every page, ad script on content pages only, `/ads.txt`.
 - **Monetisation hooks:** labelled ad slots on content pages only (never in the builder), `ads.txt` generation, analytics events without CV content — all disabled until configured.
 - **README** documents setup, environment variables, testing, deployment and architecture.
