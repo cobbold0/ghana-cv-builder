@@ -1,77 +1,449 @@
-# Product
+# Ghana CV Builder — Product Specification
 
-## Vision
+## Product
 
-The fastest way for a Ghanaian job seeker to produce a CV that gets past recruiters — on a phone, on a slow connection, paid for with Mobile Money.
+**Ghana CV Builder**
 
-## Problem
+Repository: `ghana-cv-builder`
 
-- Most job seekers build CVs on phones; Word templates are painful on mobile.
-- Many pay print/cyber shops GHS 20–100 for a CV they can't easily edit later.
-- Graduates and NSS personnel don't know local expectations (references, NSS details, professional bodies) or ATS-friendly formatting.
-- International CV builders price in USD and require cards most users don't have.
+## Product goal
+
+Build a simple, professional online CV builder aimed initially at job seekers in Ghana and later expandable to other African markets.
+
+The product should let someone create a professional CV without needing design or technical skills.
+
+The **primary objective** is:
+
+> Get a user from an empty page to a professional downloadable CV as quickly as possible.
+
+The **secondary objective** is:
+
+> Build an SEO-driven website that attracts people searching for CV templates, CV examples, CV formats and job-application resources.
+
+The **business objective** is:
+
+> Build a sustainable free product monetized primarily through advertising, with optional premium features later.
 
 ## Target users
 
-| Segment | Needs |
-|---|---|
-| Fresh graduates / NSS personnel | First CV, little experience, guidance on what to include |
-| Early/mid-career professionals | Polished, ATS-friendly CV; quick tailoring per job |
-| Public sector applicants (GES, GHS, civil service) | Formats matching public-sector expectations |
-| Artisans / informal-sector workers | Simple CV with skills and references, minimal typing |
-| Diaspora-bound applicants | International (UK/US/Canada) formats |
+Primary users:
 
-## Core user flow
+- University students
+- Recent graduates
+- Young professionals
+- People applying for their first job
+- People changing jobs
+- Internship applicants
+- Ghanaian job seekers
 
-1. Land on page (often from Google or WhatsApp link) → "Create my CV" — no sign-up required to start.
-2. Pick a template.
-3. Fill guided sections; progress auto-saved locally.
-4. Preview live; use AI to improve summary and bullet points.
-5. Sign up (phone OTP or Google) to save.
-6. Download PDF — free with watermark, or pay via MoMo for clean PDF/premium templates.
-7. Share link or send PDF via WhatsApp.
+Secondary users:
 
-## Features
+- Freelancers
+- Remote workers
+- African job seekers outside Ghana
+- Professionals updating old CVs
 
-### MVP
-- Guided CV editor: personal info, summary, experience, education, NSS, skills, certifications, languages, references.
-- 3 free templates + 3 premium templates, all ATS-friendly (single column option).
-- Live preview and PDF download.
-- Local autosave; account sync after sign-up.
-- Phone OTP and Google sign-in.
-- Paystack checkout (MTN MoMo, Telecel Cash, AirtelTigo Money, card).
-- Shareable public CV link.
+## Core user journey
 
-### v1.1
-- AI assistant: rewrite summary, turn duties into achievement bullets, tailor to a pasted job description.
-- Cover letter builder using CV data.
-- Multiple CVs per account; duplicate and tailor.
-- Import from existing PDF/DOCX CV.
-- Twi/Ga/Ewe UI hints (content remains English).
+A new user should be able to:
 
-### Later
-- Job-specific templates (teaching, nursing, banking, engineering).
-- Recruiter/employer view and CV review marketplace.
-- Offline-capable PWA.
-- Printed CV delivery via partner print shops.
+1. Land on the website.
+2. Understand the product immediately.
+3. Start creating a CV.
+4. Enter personal information.
+5. Add education.
+6. Add work experience.
+7. Add skills.
+8. Add projects or other relevant sections.
+9. Select a professional template.
+10. Preview the CV.
+11. Make changes.
+12. Export/download the CV.
 
-## Out of scope (for now)
+The workflow should require as few unnecessary steps as possible.
 
-- Job board / applications.
-- Native mobile apps.
-- Non-English CV content.
+Do not force account creation before the user can experience the product unless technically necessary.
 
-## Success metrics
+## MVP features
 
-- Activation: % of visitors who complete at least one CV section — target 40%.
-- Completion: % of started CVs downloaded — target 50%.
-- Conversion: % of downloaders who pay — target 8%.
-- Median time to first download < 15 minutes on mobile.
-- Organic search share of new visitors > 50% by month 6.
+### 1. CV builder
 
-## Principles
+Support common CV sections.
 
-- Mobile-first, data-light. Every page usable on a low-end Android over 3G.
-- Value before sign-up. Users can build and preview without an account.
-- Honest pricing in cedis. No surprise subscriptions.
-- Privacy by default. Minimal personal data; public links are opt-in.
+#### Personal information
+
+- Full name
+- Professional title
+- Email
+- Phone
+- Location
+- LinkedIn
+- Website/portfolio
+- Profile photo — optional
+
+Do not require information that is not necessary.
+
+#### Professional summary
+
+Allow the user to write a short professional summary.
+
+Provide optional guidance/examples.
+
+#### Work experience
+
+Each experience entry should support:
+
+- Job title
+- Company
+- Location
+- Start date
+- End date
+- Current position
+- Description
+- Achievements/responsibilities
+
+Users must be able to add multiple entries.
+
+#### Education
+
+Each education entry should support:
+
+- Institution
+- Degree/certificate
+- Field of study
+- Location
+- Start date
+- End date
+- Description
+
+Users must be able to add multiple entries.
+
+#### Skills
+
+Support multiple skills.
+
+Consider optional proficiency indicators, but do not make them visually excessive.
+
+#### Projects
+
+Support:
+
+- Project name
+- Description
+- Technologies/tools
+- URL
+
+Projects should be particularly useful for students and developers.
+
+#### Certifications
+
+Support:
+
+- Certification name
+- Issuing organization
+- Date
+- Credential URL
+
+#### Languages
+
+Support:
+
+- Language
+- Proficiency
+
+#### References
+
+Support optional references.
+
+Do not make references mandatory.
+
+### 2. Template system
+
+The application must support multiple CV templates.
+
+The architecture should make adding templates easy without rewriting the entire builder.
+
+Initial templates should include different professional styles, for example:
+
+1. Modern
+2. Classic
+3. Minimal
+4. Graduate
+5. Professional
+
+Templates must remain readable when printed.
+
+Do not create templates that look impressive on screen but produce poor PDFs.
+
+### 3. CV preview
+
+The user should see a live or near-live preview of their CV.
+
+The preview should:
+
+- Reflect edits quickly
+- Maintain professional spacing
+- Show realistic page boundaries
+- Handle multiple pages
+- Avoid awkward section breaks
+- Remain readable
+
+The CV preview should resemble the final exported document.
+
+### 4. PDF export
+
+Users must be able to download their completed CV as a PDF.
+
+PDF output must:
+
+- Have correct page dimensions
+- Preserve typography
+- Preserve spacing
+- Avoid clipped content
+- Handle multiple pages
+- Print cleanly
+- Use selectable text where technically possible
+
+Pay particular attention to page breaks.
+
+### 5. Persistence
+
+The product should initially favor privacy and simplicity.
+
+If the user has not created an account, consider storing draft CV data locally in the browser.
+
+The architecture should allow authenticated cloud storage to be introduced later.
+
+Do not build a complicated account system solely for MVP convenience.
+
+## Account system
+
+Authentication is optional for the first MVP.
+
+If authentication is introduced, users should eventually be able to:
+
+- Save CVs
+- Return later
+- Manage multiple CVs
+- Delete CVs
+- Export CVs
+
+Do not make authentication a blocker for the basic CV creation experience.
+
+## CV duplication
+
+Eventually support:
+
+> Duplicate this CV
+
+This allows users to create different versions for different jobs.
+
+This does not need to be part of the first implementation unless the architecture supports it naturally.
+
+## Job-specific CVs
+
+Future functionality may allow users to:
+
+- Paste a job description
+- Compare their CV against the job
+- Receive suggestions
+- Create a tailored CV
+
+This is a potential AI-powered premium feature.
+
+Do not build this during the basic MVP unless specifically required.
+
+## AI assistance
+
+AI assistance may eventually include:
+
+### Summary improvement
+
+User:
+
+> "I am a software developer with 2 years experience..."
+
+AI:
+
+> Suggests a more professional version.
+
+### Experience bullet improvement
+
+Convert:
+
+> "Worked on app"
+
+into stronger professional wording without inventing achievements.
+
+### Job description tailoring
+
+Compare CV content against a job description.
+
+### Skills suggestions
+
+Suggest relevant skills based on the user's existing information.
+
+AI must never invent:
+
+- Jobs
+- Degrees
+- Companies
+- Certifications
+- Achievements
+- Years of experience
+- Skills the user does not have
+
+AI functionality is optional for the initial MVP.
+
+## Content guidance
+
+The product should help users understand what belongs in a CV.
+
+Examples of useful guidance:
+
+- What to put in a professional summary
+- How to describe work experience
+- How to write achievement-focused bullet points
+- What skills to include
+- How long a CV should be
+- CV tips for graduates
+- CV tips for internships
+- CV tips for experienced professionals
+
+These can also become SEO content pages.
+
+## Ghana-specific considerations
+
+The initial market is Ghana.
+
+Support common Ghanaian formats and expectations where appropriate. Examples:
+
+- Ghanaian phone numbers
+- Ghanaian locations
+- Local universities
+- Local employment terminology
+- Local job-search terminology
+
+However, do not hard-code the product so tightly that it cannot later support other countries.
+
+Avoid making unsupported claims about what every Ghanaian employer requires.
+
+## Landing page
+
+The homepage should immediately communicate:
+
+> Create a professional CV in minutes.
+
+It should provide a clear path to:
+
+> Create my CV
+
+Also provide useful supporting information rather than excessive marketing copy.
+
+Possible homepage sections:
+
+- Hero
+- How it works
+- Template preview
+- Features
+- CV examples
+- CV tips
+- Frequently asked questions
+- CTA
+
+Keep the page fast.
+
+## SEO content
+
+Build useful supporting pages around search intent.
+
+Potential pages:
+
+- `/cv-builder`
+- `/cv-templates`
+- `/cv-examples`
+- `/cv-format`
+- `/cv-template-ghana`
+- `/graduate-cv`
+- `/internship-cv`
+- `/professional-cv`
+- `/how-to-write-a-cv`
+- `/cv-tips`
+
+Do not create pages merely by changing a keyword.
+
+Each page must contain genuinely useful content.
+
+## Blog/content system
+
+A lightweight content architecture should be considered.
+
+Potential articles:
+
+- How to write a CV in Ghana
+- CV format for graduates
+- CV examples for students
+- How to write a professional summary
+- How to describe work experience on a CV
+- CV mistakes to avoid
+- How to write a CV with no work experience
+- CV vs resume
+
+The content system should not require a complex CMS for MVP unless necessary.
+
+## Monetization
+
+The free CV builder should remain useful.
+
+Primary monetization:
+
+- Advertising
+
+Potential secondary monetization:
+
+- Premium templates
+- Ad-free experience
+- AI CV assistance
+- Premium exports
+- Job application tools
+
+Do not cripple the free product simply to force payment.
+
+The product should first establish traffic and usage.
+
+## What NOT to build initially
+
+Do not build:
+
+- Social networking
+- Messaging
+- Job marketplace
+- Full recruitment platform
+- Complex employer accounts
+- Payroll
+- HR management
+- Cryptocurrency/payment features
+- Unnecessary gamification
+- Complex subscription infrastructure
+- Mobile app unless there is a clear reason
+
+The first goal is a great web-based CV builder.
+
+## Success criteria
+
+The MVP is successful when a new visitor can:
+
+> Visit → start CV → fill information → choose template → preview → download PDF
+
+without needing technical knowledge.
+
+The application should feel fast, professional and trustworthy.
+
+The architecture should leave room for:
+
+- More templates
+- SEO content
+- AI assistance
+- Accounts
+- Premium features
+- Other African markets
