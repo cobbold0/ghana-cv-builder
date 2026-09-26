@@ -37,6 +37,9 @@ export function hrefFor(url: string): string {
 
 export function slugifyFileName(name: string): string {
   const base = cleanText(name)
+    .replace(/[ɔƆ]/g, (c) => (c === "ɔ" ? "o" : "O"))
+    .replace(/[ɛƐ]/g, (c) => (c === "ɛ" ? "e" : "E"))
+    .replace(/ŋ/g, "ng")
     .normalize("NFKD")
     .replace(/[̀-ͯ]/g, "")
     .replace(/[^A-Za-z0-9]+/g, "-")
