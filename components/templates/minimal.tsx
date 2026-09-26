@@ -1,6 +1,6 @@
 import { baseSectionStyles, ContactLine, CvSections, type TemplateProps } from "./shared";
 
-const c = { text: "#171717", muted: "#6b6b6b", accent: "#8a8a8a", rule: "#e5e5e5" };
+const c = { text: "#171717", muted: "#6b6b6b", accent: "#737373", rule: "#e5e5e5" };
 
 const s = baseSectionStyles(c, {
   section: { marginTop: 14 },

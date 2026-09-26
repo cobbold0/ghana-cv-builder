@@ -55,6 +55,21 @@ describe("PDF export", () => {
     expect(pageCount(buf)).toBe(1);
   });
 
+  it.each(["modern", "professional"] as const)("embeds a profile photo with %s", async (id) => {
+    // 1×1 PNG
+    const photo = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
+    const cv = cvSchema.parse({ personal: { fullName: "Ama Owusu", photo } });
+    const buf = await render(cv, id, "photo");
+    expect(buf.toString("latin1")).toMatch(/\/Subtype\s*\/Image/);
+  });
+
+  it("keeps link annotations for email and profile links", async () => {
+    const buf = await render(SAMPLE_CV, "modern", "links");
+    const pdf = buf.toString("latin1");
+    expect(pdf).toContain("mailto:ama.owusu@example.com");
+    expect(pdf).toContain("https://linkedin.com/in/ama-owusu-example");
+  });
+
   it("renders a CV with no experience and unusual characters", async () => {
     const cv = cvSchema.parse({
       personal: { fullName: "Kɔfi Ɛdem Agbeko 🎓", email: "kofi@example.com" },

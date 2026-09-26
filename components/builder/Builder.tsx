@@ -238,13 +238,13 @@ export function Builder() {
       {/* Top bar */}
       <header className="sticky top-0 z-20 border-b border-slate-200 bg-white">
         <div className="mx-auto flex h-14 max-w-[1600px] items-center justify-between gap-3 px-4">
-          <Link href="/" className="flex items-center gap-2 font-semibold text-slate-900">
+          <Link href="/" aria-label="Ghana CV Builder home" className="flex items-center gap-2 font-semibold text-slate-900">
             <span aria-hidden="true" className="flex size-7 items-center justify-center rounded-md bg-brand-700 text-xs font-bold text-white">
               CV
             </span>
             <span className="hidden sm:inline">Ghana CV Builder</span>
           </Link>
-          <p className="min-w-0 truncate text-xs text-slate-500 sm:text-sm" aria-live="polite">
+          <p className="min-w-0 truncate text-xs text-slate-600 sm:text-sm" aria-live="polite">
             {saveState === "failed" || saveState === "unavailable" ? <span className="text-red-700">{saveLabel[saveState]}</span> : saveLabel[saveState]}
           </p>
           <div className="relative flex items-center gap-2">
@@ -268,7 +268,7 @@ export function Builder() {
                 <button type="button" className="block w-full rounded-md px-3 py-2.5 text-left text-sm hover:bg-slate-100" onClick={() => { setMenuOpen(false); fileRef.current?.click(); }}>
                   Open backup file
                 </button>
-                <p className="px-3 pt-1 pb-2 text-xs leading-relaxed text-slate-500">Backups let you move your CV to another phone or computer.</p>
+                <p className="px-3 pt-1 pb-2 text-xs leading-relaxed text-slate-600">Backups let you move your CV to another phone or computer.</p>
               </div>
             )}
             <input
@@ -323,7 +323,7 @@ export function Builder() {
                   <Component cv={cv} update={update} err={err} touch={touch} reveal={reveal} photoSupported={templateInfo.supportsPhoto} />
                 </SectionPanel>
               ))}
-              <p className="px-1 pt-2 text-xs leading-relaxed text-slate-500">
+              <p className="px-1 pt-2 text-xs leading-relaxed text-slate-600">
                 Your CV is saved in this browser only and is never uploaded. Clearing your browser data will remove it — use Menu → Save backup file to keep a copy.
               </p>
             </div>
@@ -336,12 +336,13 @@ export function Builder() {
             <div className="mb-3 flex flex-col gap-2">
               <h2 className="text-sm font-semibold text-slate-700">Template</h2>
               <TemplatePicker value={templateId} onChange={chooseTemplate} />
-              <p className="text-xs text-slate-500">{templateInfo.tagline}</p>
+              <p className="text-xs text-slate-600">{templateInfo.tagline}</p>
             </div>
-            <div className="lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto lg:rounded-lg lg:bg-slate-200/60 lg:p-4">
+            {/* Focusable so keyboard users can scroll the preview on desktop. */}
+            <div tabIndex={0} role="region" aria-label="CV preview area" className="lg:max-h-[calc(100dvh-11rem)] lg:overflow-y-auto lg:rounded-lg lg:bg-slate-200/60 lg:p-4">
               {ready ? <CvPreview cv={cv} templateId={templateId} /> : null}
             </div>
-            <p className="mt-2 text-xs text-slate-500">The PDF may move a heading or entry to the next page to avoid awkward breaks.</p>
+            <p className="mt-2 text-xs text-slate-600">The PDF may move a heading or entry to the next page to avoid awkward breaks.</p>
           </div>
         </div>
       </main>

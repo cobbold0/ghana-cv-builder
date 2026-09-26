@@ -50,7 +50,7 @@ export function PhotoField({
           // eslint-disable-next-line @next/next/no-img-element
           <img src={value} alt="Your CV photo" className="size-16 rounded-full object-cover ring-1 ring-slate-200" />
         ) : (
-          <div className="flex size-16 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-500" aria-hidden="true">
+          <div className="flex size-16 items-center justify-center rounded-full bg-slate-100 text-xs text-slate-600" aria-hidden="true">
             No photo
           </div>
         )}
