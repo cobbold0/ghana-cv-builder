@@ -37,7 +37,7 @@ Prioritised by practical value.
 
 ## Completed
 
-Verified with the automated test suite (112 unit/component tests, 23 end-to-end checks on desktop and mobile Chrome), a production build, and manual review of screenshots and generated PDFs.
+Verified with the automated test suite (115 unit/component tests, 23 end-to-end checks on desktop and mobile Chrome), a production build, and manual review of screenshots and generated PDFs.
 
 - **CV builder** with all sections from the product spec; add, edit, reorder and delete entries; confirmation before deleting entries with content and before starting a new CV.
 - **Five professional templates** (Modern, Classic, Minimal, Graduate, Professional), sharing one data model; empty sections are omitted; long names and long CVs handled.
