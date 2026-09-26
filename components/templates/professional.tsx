@@ -9,7 +9,7 @@ const s = baseSectionStyles(c, {
 });
 
 export default function ProfessionalTemplate({ cv, p }: TemplateProps) {
-  const { Page, View, Text, Image } = p;
+  const { Page, View, Text, Image: Photo } = p;
   const title = (t: string) => (
     <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 7 }}>
       <View style={{ width: 3, height: 11, backgroundColor: c.accent, marginRight: 7 }} />
@@ -28,7 +28,7 @@ export default function ProfessionalTemplate({ cv, p }: TemplateProps) {
           alignItems: "center",
         }}
       >
-        {cv.photo ? <Image src={cv.photo} style={{ width: 70, height: 70, borderRadius: 35, marginRight: 18 }} /> : null}
+        {cv.photo ? <Photo src={cv.photo} style={{ width: 70, height: 70, borderRadius: 35, marginRight: 18 }} /> : null}
         <View style={{ flex: 1 }}>
           <Text style={{ fontFamily: "SourceSerif4", fontSize: 24, fontWeight: 700, color: "#ffffff", lineHeight: 1.15 }}>
             {cv.name || "Your Name"}

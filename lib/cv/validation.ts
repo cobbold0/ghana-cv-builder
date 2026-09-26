@@ -60,7 +60,8 @@ export function validateCv(cv: CV, { forExport = false } = {}): FieldErrors {
     check(`certifications.${c.id}.date`, c.date, isValidCvDate, "Enter a valid date.");
     check(`certifications.${c.id}.url`, c.url, isValidUrl, "Enter a valid link.");
   }
-  for (const r of cv.references) {
+  // Referees are hidden when "available on request" is ticked, so don't block on them.
+  for (const r of cv.referencesOnRequest ? [] : cv.references) {
     check(`references.${r.id}.email`, r.email, isValidEmail, "Enter a valid email address.");
     check(`references.${r.id}.phone`, r.phone, isValidPhone, "Enter a valid phone number.");
   }

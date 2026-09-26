@@ -9,7 +9,7 @@ const s = baseSectionStyles(c, {
 });
 
 export default function ModernTemplate({ cv, p }: TemplateProps) {
-  const { Page, View, Text, Image } = p;
+  const { Page, View, Text, Image: Photo } = p;
   return (
     <Page style={{ fontFamily: "Inter", fontSize: 9.5, lineHeight: 1.45, color: "#1f2937", paddingTop: 36, paddingBottom: 36, paddingHorizontal: 46 }}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -18,7 +18,7 @@ export default function ModernTemplate({ cv, p }: TemplateProps) {
           {cv.title ? <Text style={{ fontSize: 12, color: c.accent, fontWeight: 600, marginTop: 3 }}>{cv.title}</Text> : null}
           <ContactLine cv={cv} p={p} style={{ marginTop: 8 }} itemStyle={{ fontSize: 8.5, color: c.muted }} />
         </View>
-        {cv.photo ? <Image src={cv.photo} style={{ width: 68, height: 68, borderRadius: 34, marginLeft: 16 }} /> : null}
+        {cv.photo ? <Photo src={cv.photo} style={{ width: 68, height: 68, borderRadius: 34, marginLeft: 16 }} /> : null}
       </View>
       <View style={{ height: 1, backgroundColor: "#e5e7eb", marginTop: 12 }} />
       <CvSections cv={cv} p={p} s={s} />

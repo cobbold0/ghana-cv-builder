@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/inter-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/inter-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/inter-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/inter-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/sourceserif4-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/sourceserif4-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/sourceserif4-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/sourceserif4-700.woff2") format("woff2");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+
+  --color-brand-50: #effaf5;
+  --color-brand-100: #d8f3e6;
+  --color-brand-200: #b3e6cf;
+  --color-brand-500: #1f9d6d;
+  --color-brand-600: #148056;
+  --color-brand-700: #0f6848;
+  --color-brand-800: #0e533b;
+  --color-brand-900: #0c4431;
+  --color-gold-400: #e8b73a;
+  --color-gold-500: #d4a017;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-slate-800);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+}
+
+/* ---- CV preview (HTML rendering of the templates) ---- */
+.cv-page {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #111;
+  font-size: 12pt;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
+.cv-view {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-width: 0;
+}
+.cv-text {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.cv-text .cv-text {
+  display: inline;
+}
+.cv-image {
+  display: block;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Long-form content pages */
+.prose-cv {
+  line-height: 1.7;
+  color: var(--color-slate-700);
+}
+.prose-cv h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--color-slate-900);
+}
+.prose-cv h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+}
+.prose-cv p,
+.prose-cv ul,
+.prose-cv ol {
+  margin-top: 0.75rem;
+}
+.prose-cv ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prose-cv ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.prose-cv li {
+  margin-top: 0.35rem;
+}
+.prose-cv a {
+  color: var(--color-brand-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-cv strong {
+  color: var(--color-slate-900);
+  font-weight: 600;
+}
+.prose-cv table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose-cv th,
+.prose-cv td {
+  border-bottom: 1px solid var(--color-slate-200);
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-cv th {
+  color: var(--color-slate-900);
+  font-weight: 600;
 }
