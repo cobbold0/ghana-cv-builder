@@ -8,12 +8,11 @@ It must always reflect the actual current state of the project.
 
 1. **AdSense:** in the `cobbold.dev` site, tick "I've published the ads.txt file", click **Verify**, then **Request review**. (`https://cobbold.dev/ads.txt` is served by the `my-portfolio` project and covers every `*.cobbold.dev` site.)
 2. **After AdSense approval:** create a Display ad unit (Ads → By ad unit) and set its ID as `NEXT_PUBLIC_ADSENSE_SLOT` in Vercel (or give it to Claude to build in), then redeploy. Turn on the consent message under **Privacy & messaging** before serving ads to EEA/UK visitors.
-3. **Provide a contact email address** for the site (About/Privacy pages). AdSense reviewers look for one.
-4. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`.
-5. **my-portfolio:** merge `Production` back into `Develop` (an `ads.txt` commit was pushed directly to `Production`).
-6. **Search Console:** if the sitemap still shows "could not be read", remove and resubmit `sitemap.xml`, and use URL Inspection → Test live URL.
-7. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission.
-8. **Analytics:** confirm visits appear in GA4 (`G-PP7163Z5PK`) under Reports → Realtime.
+3. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`.
+4. **my-portfolio:** merge `Production` back into `Develop` (an `ads.txt` commit was pushed directly to `Production`).
+5. **Search Console:** if the sitemap still shows "could not be read", remove and resubmit `sitemap.xml`, and use URL Inspection → Test live URL.
+6. **Review the privacy policy and terms of use** (`/privacy`, `/terms`) with someone qualified, including whether you need to register with Ghana's Data Protection Commission.
+7. **Analytics:** confirm visits appear in GA4 (`G-PP7163Z5PK`) under Reports → Realtime.
 
 ## Optional improvements
 
@@ -55,5 +54,6 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **AdSense** publisher `ca-pub-5952797612434262` wired in: verification meta tag on every page, ad script on content pages only, `/ads.txt`.
 - **Cookie consent:** Google Consent Mode v2 — analytics and ad storage denied by default for EEA/UK/Swiss visitors until they answer Google's AdSense consent message; granted elsewhere. "Cookie settings" footer link reopens the message. Verified in a browser that consent defaults precede the Analytics config.
 - **Ads:** two in-content ad units on the long guides (how to write a CV, CV format, Ghana CV, professional CV), one on other content pages, none in the builder; unfilled slots are hidden.
+- **Contact:** augustine@cobbold.dev on the About, Privacy and Terms pages and in the footer.
 - **Monetisation hooks:** labelled ad slots on content pages only (never in the builder), `ads.txt` generation, analytics events without CV content — all disabled until configured.
 - **README** documents setup, environment variables, testing, deployment and architecture.

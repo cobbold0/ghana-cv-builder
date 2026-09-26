@@ -10,6 +10,7 @@ export const SITE = {
   description:
     "Create a professional CV in minutes. Free online CV builder with templates, examples and practical advice for job seekers in Ghana.",
   locale: "en_GH",
+  email: "augustine@cobbold.dev",
 } as const;
 
 export const absoluteUrl = (path = "/") => `${SITE.url}${path === "/" ? "" : path}`;

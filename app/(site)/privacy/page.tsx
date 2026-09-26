@@ -1,6 +1,6 @@
 import { ContentPage } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
-import { pageMetadata } from "@/lib/seo/site";
+import { SITE, pageMetadata } from "@/lib/seo/site";
 
 const description = "How Ghana CV Builder handles your information: your CV stays on your device, and what analytics and advertising may collect.";
 
@@ -60,7 +60,7 @@ export default function Page() {
       <h2>Your rights</h2>
       <p>
         Because we don&apos;t store your CV, there is no CV data held by us to access or delete. For questions about analytics or advertising data,
-        or anything in this policy, please contact the site owner using the contact details provided on this site.
+        or anything in this policy, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
 
       <h2>Changes</h2>

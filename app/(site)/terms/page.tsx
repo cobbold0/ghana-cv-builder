@@ -1,6 +1,6 @@
 import { ContentPage } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
-import { pageMetadata } from "@/lib/seo/site";
+import { SITE, pageMetadata } from "@/lib/seo/site";
 
 const description = "The terms for using Ghana CV Builder, a free online CV creation tool.";
 
@@ -40,6 +40,10 @@ export default function Page() {
       </p>
       <h2>Acceptable use</h2>
       <p>Don&apos;t misuse the site, attempt to disrupt it, or use it to create misleading or fraudulent documents.</p>
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
     </ContentPage>
   );
 }

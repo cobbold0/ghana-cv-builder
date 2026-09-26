@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ContentPage } from "@/components/content/ContentPage";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
-import { pageMetadata } from "@/lib/seo/site";
+import { SITE, pageMetadata } from "@/lib/seo/site";
 
 const description = "Ghana CV Builder is a free online tool that helps job seekers in Ghana create clear, professional CVs quickly, on any device.";
 
@@ -35,6 +35,10 @@ export default function Page() {
         The builder is free to use. The site may show clearly labelled advertising on guide and example pages to cover running costs. Ads are never
         placed inside the CV builder. We may add optional paid extras in the future, but creating and downloading a CV will stay free. See our{" "}
         <Link href="/privacy">privacy policy</Link> for details.
+      </p>
+      <h2>Contact</h2>
+      <p>
+        Questions, feedback or found a problem? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
       </p>
     </ContentPage>
   );

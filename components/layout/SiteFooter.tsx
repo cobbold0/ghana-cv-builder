@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ADS } from "@/lib/ads";
+import { SITE } from "@/lib/seo/site";
 import { CookieSettingsButton } from "./CookieSettingsButton";
 
 const GROUPS = [
@@ -35,6 +36,7 @@ const GROUPS = [
       { href: "/about", label: "About" },
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms of use" },
+      { href: `mailto:${SITE.email}`, label: "Contact" },
     ],
   },
 ];
