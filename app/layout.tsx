@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import { ThirdPartyScripts } from "@/components/layout/ThirdPartyScripts";
+import { ADS } from "@/lib/ads";
 import { SITE } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, email: false, address: false },
   // Google Search Console HTML-tag verification (optional; DNS verification also works).
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } : undefined,
+  // Lets AdSense verify site ownership without loading ads on every page.
+  other: ADS.client ? { "google-adsense-account": ADS.client } : undefined,
 };
 
 export const viewport: Viewport = {
