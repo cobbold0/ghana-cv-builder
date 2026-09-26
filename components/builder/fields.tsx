@@ -215,7 +215,7 @@ export function MonthYearField({
   const selectClass = `${inputClass} disabled:bg-slate-100 disabled:text-slate-400`;
 
   return (
-    <fieldset className={className} aria-describedby={error ? `${id}-error` : undefined}>
+    <fieldset className={`min-w-0 ${className ?? ""}`} aria-describedby={error ? `${id}-error` : undefined}>
       <legend className="mb-1.5 block text-sm font-medium text-slate-800">
         {label}
         {optional && <span className="ml-1 font-normal text-slate-500">(optional)</span>}

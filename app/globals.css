@@ -120,7 +120,8 @@ body {
   flex-shrink: 0;
 }
 
-/* Long-form content pages */
+/* Long-form content pages (in a layer so utility classes can override them) */
+@layer components {
 .prose-cv {
   line-height: 1.7;
   color: var(--color-slate-700);
@@ -181,4 +182,5 @@ body {
 .prose-cv th {
   color: var(--color-slate-900);
   font-weight: 600;
+}
 }

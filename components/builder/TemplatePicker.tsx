@@ -4,7 +4,8 @@ import { TEMPLATES, type TemplateId } from "@/lib/templates/registry";
 
 export function TemplatePicker({ value, onChange }: { value: TemplateId; onChange: (id: TemplateId) => void }) {
   return (
-    <fieldset>
+    // min-w-0: fieldsets default to min-width: min-content, which would widen the page on phones.
+    <fieldset className="min-w-0">
       <legend className="sr-only">Template</legend>
       <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:thin]">
         {TEMPLATES.map((t) => {
@@ -12,7 +13,7 @@ export function TemplatePicker({ value, onChange }: { value: TemplateId; onChang
           return (
             <label
               key={t.id}
-              className={`flex min-h-11 shrink-0 cursor-pointer items-center gap-2 rounded-lg border px-3 text-sm font-medium has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-brand-600 ${
+              className={`relative flex min-h-11 shrink-0 cursor-pointer items-center gap-2 rounded-lg border px-3 text-sm font-medium has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-brand-600 ${
                 selected ? "border-brand-700 bg-brand-50 text-brand-900" : "border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
               }`}
             >

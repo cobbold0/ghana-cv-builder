@@ -12,7 +12,7 @@ export const NAV = [
 export function SiteHeader() {
   return (
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4">
         <Logo />
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-1">
@@ -26,11 +26,11 @@ export function SiteHeader() {
           </ul>
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/builder" className={buttonClass("primary", "sm")}>
+          <Link href="/builder" className={buttonClass("primary", "sm", "whitespace-nowrap")}>
             Create my CV
           </Link>
           <details className="relative md:hidden">
-            <summary className="flex min-h-9 cursor-pointer list-none items-center rounded-md px-3 text-sm font-medium text-slate-700 hover:bg-slate-100 [&::-webkit-details-marker]:hidden">
+            <summary className="flex min-h-9 cursor-pointer list-none items-center rounded-md px-2 text-sm font-medium text-slate-700 hover:bg-slate-100 [&::-webkit-details-marker]:hidden">
               Menu
             </summary>
             <nav aria-label="Main" className="absolute top-full right-0 z-30 mt-2 w-56 rounded-lg border border-slate-200 bg-white p-1 shadow-lg">
