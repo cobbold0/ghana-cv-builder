@@ -36,8 +36,9 @@ export const htmlPrimitives: Primitives = {
       {children}
     </div>
   ),
-  View: ({ style, children }) => (
-    <div className="cv-view" style={toCss(style)}>
+  // "fixed" views are full-page backgrounds (side panels, stripes); keep them behind the content.
+  View: ({ style, children, fixed }) => (
+    <div className="cv-view" style={fixed ? { ...toCss(style), zIndex: -1 } : toCss(style)}>
       {children}
     </div>
   ),

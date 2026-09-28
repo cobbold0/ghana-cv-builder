@@ -37,7 +37,7 @@ Prioritised by practical value.
 Verified with the automated test suite (115 unit/component tests, 23 end-to-end checks on desktop and mobile Chrome), a production build, and manual review of screenshots and generated PDFs.
 
 - **CV builder** with all sections from the product spec; add, edit, reorder and delete entries; confirmation before deleting entries with content and before starting a new CV.
-- **Five professional templates** (Modern, Classic, Minimal, Graduate, Professional), sharing one data model; empty sections are omitted; long names and long CVs handled.
+- **Ten professional templates** (Modern, Classic, Minimal, Graduate, Professional, Sidebar, Timeline, Executive, Compact, Bold), sharing one data model; empty sections are omitted; long names and long CVs paginate in every template (verified by PDF tests), and every example fits on one page in its template.
 - **Live preview** with page markers; Edit/Preview switch on phones; side-by-side on desktop.
 - **PDF export** in the browser: A4, embedded fonts, selectable text, clickable email/links, photos, multi-page with consistent margins and headings kept with content. Verified for one-page, multi-page (4–5 pages), empty, no-experience and photo CVs, and Ghanaian characters (ɛ, ɔ, ₵).
 - **Validation and error states:** inline errors after leaving a field; export blocked with a clear message and focus on the first problem; PDF failure message; storage-blocked and storage-full messages; recovered-draft message; 404 and error pages.

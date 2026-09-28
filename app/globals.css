@@ -91,6 +91,7 @@ body {
 /* ---- CV preview (HTML rendering of the templates) ---- */
 .cv-page {
   position: relative;
+  isolation: isolate;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

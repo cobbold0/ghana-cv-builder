@@ -9,7 +9,7 @@ export const LINKS = {
   student: { href: "/student-cv", label: "Student CV guide", description: "What to write when you have little or no work experience." },
   internship: { href: "/internship-cv", label: "Internship CV guide", description: "CVs for internships and industrial attachment." },
   professional: { href: "/professional-cv", label: "Professional CV guide", description: "Make your CV look and read like a professional's." },
-  templates: { href: "/cv-templates", label: "CV templates", description: "Five free, printable A4 templates." },
+  templates: { href: "/cv-templates", label: "CV templates", description: "Ten free, printable A4 templates." },
   examples: { href: "/cv-examples", label: "CV examples", description: "Realistic example CVs you can open and edit." },
   summary: { href: "/professional-summary", label: "How to write a professional summary", description: "A simple formula and examples for every career stage." },
   experience: { href: "/work-experience-on-cv", label: "How to describe work experience", description: "Turn duties into achievement bullet points." },

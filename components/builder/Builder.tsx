@@ -96,10 +96,10 @@ export function Builder() {
         if (!ex) return;
         const hasWork = JSON.stringify(initialCv) !== JSON.stringify(emptyCv());
         if (hasWork) {
-          setPending({ kind: "replace", cv: ex.cv, templateId: ex.templateId, message: `Replace your current CV with the “${ex.title}” example? Your current CV will be lost unless you save a backup first.` });
+          setPending({ kind: "replace", cv: ex.cv, templateId: isTemplateId(t) ? t : ex.templateId, message: `Replace your current CV with the “${ex.title}” example? Your current CV will be lost unless you save a backup first.` });
         } else {
           setCv(ex.cv);
-          setTemplateId(ex.templateId);
+          setTemplateId(isTemplateId(t) ? t : ex.templateId);
           setOpenSections(new Set(["personal"]));
           setMessage({ tone: "info", text: `Loaded the “${ex.title}” example. Replace the details with your own.` });
           track("example_loaded", { example });

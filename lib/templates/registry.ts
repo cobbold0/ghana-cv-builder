@@ -11,7 +11,7 @@ export interface TemplateInfo {
   premium: boolean;
 }
 
-export const TEMPLATE_IDS = ["modern", "classic", "minimal", "graduate", "professional"] as const;
+export const TEMPLATE_IDS = ["modern", "classic", "minimal", "graduate", "professional", "sidebar", "timeline", "executive", "compact", "bold"] as const;
 export type TemplateId = (typeof TEMPLATE_IDS)[number];
 export const DEFAULT_TEMPLATE: TemplateId = "modern";
 
@@ -67,6 +67,61 @@ export const TEMPLATES: TemplateInfo[] = [
     description:
       "A strong dark header with your name and contact details, serif section headings and a clean body. Supports an optional profile photo.",
     bestFor: ["Mid-career and senior roles", "Sales, management and consulting", "Roles where a photo is expected"],
+    font: "sans",
+    supportsPhoto: true,
+    premium: false,
+  },
+  {
+    id: "sidebar",
+    name: "Sidebar",
+    tagline: "Two columns with a tinted side panel",
+    description:
+      "Contact details, skills and languages sit in a soft side panel, leaving the main column for your summary, experience and education. Supports an optional photo.",
+    bestFor: ["Modern offices and start-ups", "Roles where skills matter as much as history", "CVs with many skills or languages"],
+    font: "sans",
+    supportsPhoto: true,
+    premium: false,
+  },
+  {
+    id: "timeline",
+    name: "Timeline",
+    tagline: "Dates in a column down the left",
+    description:
+      "Puts every date in a column on the left so your career reads like a timeline. Makes steady progression easy to see at a glance.",
+    bestFor: ["Steady career progression", "Public service and NGOs", "Showing long tenure clearly"],
+    font: "sans",
+    supportsPhoto: false,
+    premium: false,
+  },
+  {
+    id: "executive",
+    name: "Executive",
+    tagline: "Navy and gold serif, understated and formal",
+    description:
+      "A formal layout with serif headings, a navy and gold palette and an executive profile. Organisations are listed first, then your role.",
+    bestFor: ["Senior and management roles", "Board and director applications", "Finance, law and consulting"],
+    font: "serif",
+    supportsPhoto: false,
+    premium: false,
+  },
+  {
+    id: "compact",
+    name: "Compact",
+    tagline: "Dense and efficient, fits more on a page",
+    description:
+      "Smaller type, tight spacing and shaded section bars fit a long career onto fewer pages without looking cramped. Contact details sit top right.",
+    bestFor: ["Long careers and many roles", "Technical and engineering CVs", "Keeping to two pages"],
+    font: "sans",
+    supportsPhoto: false,
+    premium: false,
+  },
+  {
+    id: "bold",
+    name: "Bold",
+    tagline: "Large name, red accent stripe",
+    description:
+      "A confident layout with a large name, a red stripe down the left edge and strong section headings. Supports an optional photo.",
+    bestFor: ["Sales and marketing", "Creative and media roles", "Standing out in a pile of CVs"],
     font: "sans",
     supportsPhoto: true,
     premium: false,

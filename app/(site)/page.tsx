@@ -17,7 +17,7 @@ export const metadata = pageMetadata({
 
 const STEPS = [
   { title: "Fill in your details", body: "Add your experience, education and skills in simple steps. Tips and examples help you write each section." },
-  { title: "Choose a template", body: "Switch between five professional templates at any time. Your details stay the same." },
+  { title: "Choose a template", body: "Switch between ten professional templates at any time. Your details stay the same." },
   { title: "Download your PDF", body: "Get a clean, print-ready A4 PDF with selectable text, ready to email or upload." },
 ];
 
@@ -145,7 +145,7 @@ export default function HomePage() {
               <h2 id="templates" className="text-2xl font-bold text-slate-900 sm:text-3xl">
                 Professional CV templates
               </h2>
-              <p className="mt-2 max-w-2xl text-slate-600">Every template is A4, prints cleanly in black and white, and works with the same details — switch any time.</p>
+              <p className="mt-2 max-w-2xl text-slate-600">Ten free A4 templates that print cleanly and use the same details — switch any time.</p>
             </div>
             <Link href="/cv-templates" className="font-medium text-brand-700 underline underline-offset-2">
               Compare all templates

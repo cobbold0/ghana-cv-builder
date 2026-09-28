@@ -8,7 +8,7 @@ import { buttonClass } from "@/lib/ui";
 
 const title = "Free CV Templates";
 const description =
-  "Five free, professional CV templates: Modern, Classic, Minimal, Graduate and Professional. All A4, printable and easy to fill in online. Download as PDF.";
+  "Ten free, professional CV templates — modern, classic, two-column, timeline, executive and more. All A4, printable and easy to fill in online. Download as PDF.";
 
 export const metadata = pageMetadata({ title: "Professional CV Templates — Free Online CV Builder", description, path: "/cv-templates" });
 
@@ -23,8 +23,8 @@ export default function Page() {
       wide
       intro={
         <p className="max-w-3xl">
-          Every template uses the same details, so you can fill in your CV once and switch designs whenever you like. All are A4, single-column, print
-          cleanly in black and white, and produce a PDF with real, selectable text.
+          Every template uses the same details, so you can fill in your CV once and switch designs whenever you like. All are A4, print cleanly, and
+          produce a PDF with real, selectable text.
         </p>
       }
       related={[LINKS.examples, LINKS.format, LINKS.professional, LINKS.ghana]}
@@ -70,7 +70,16 @@ export default function Page() {
             <strong>Students and new graduates:</strong> <em>Graduate</em> puts education and projects first.
           </li>
           <li>
-            <strong>Experienced professionals</strong> with a lot to say: <em>Minimal</em> or <em>Professional</em>.
+            <strong>Experienced professionals</strong> with a lot to say: <em>Minimal</em>, <em>Professional</em> or <em>Timeline</em>.
+          </li>
+          <li>
+            <strong>Senior and management roles:</strong> <em>Executive</em>.
+          </li>
+          <li>
+            <strong>Long careers that need to fit on fewer pages:</strong> <em>Compact</em>.
+          </li>
+          <li>
+            <strong>Creative, sales and marketing roles:</strong> <em>Bold</em> or <em>Sidebar</em>.
           </li>
         </ul>
         <p>
@@ -79,9 +88,10 @@ export default function Page() {
         </p>
         <h2>Are these templates ATS-friendly?</h2>
         <p>
-          Many employers use applicant tracking systems to read CVs. Our templates use a single column, standard section headings and real text in
-          the PDF, which are the features generally recommended for this kind of software. No template can guarantee how every system will read a
-          CV, so keep your wording clear and standard.
+          Many employers use applicant tracking systems to read CVs. All our templates use standard section headings and real text in the PDF.
+          Nine of the ten are single-column, which is generally the safest layout for this kind of software; <em>Sidebar</em> uses two columns, so
+          if you are applying through an online job portal, a single-column template is the more cautious choice. No template can guarantee how every
+          system will read a CV, so keep your wording clear and standard.
         </p>
       </section>
     </ContentPage>

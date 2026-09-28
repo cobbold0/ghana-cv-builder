@@ -7,7 +7,7 @@ No account is needed. CVs are built, stored and exported entirely in the user's 
 ## Features
 
 - **CV builder** — personal details, summary, experience, education, skills, projects, certifications, languages and references. Add, edit, reorder (up/down buttons) and delete entries; deleting an entry with content asks for confirmation.
-- **Five templates** — Modern, Classic, Minimal, Graduate (education first) and Professional. All A4, single-column and printable; Modern and Professional support an optional photo.
+- **Ten templates** — Modern, Classic, Minimal, Graduate (education first), Professional, Sidebar (two-column), Timeline (dates in a left column), Executive, Compact and Bold. All A4 and printable; Modern, Professional, Sidebar and Bold support an optional photo.
 - **Live preview** — updates as you type, shows page boundaries. On phones there's an Edit / Preview switch.
 - **PDF export** — generated on the device with embedded fonts, selectable text, clickable links, consistent margins on every page and headings kept with their content.
 - **Validation** — email, phone, links, dates (end after start) and length limits. Problems are shown inline; export is blocked until they're fixed, and the first problem field gets focus.
@@ -108,6 +108,6 @@ public/fonts/       subsetted .ttf (PDF) and .woff2 (web) fonts
 
 ### Extending
 
-- **New template:** add a renderer in `components/templates/`, register it in `components/templates/index.ts` and add metadata in `lib/templates/registry.ts`. Tests cover every registered template automatically.
+- **New template:** add a renderer in `components/templates/`, register it in `components/templates/index.ts` and add metadata in `lib/templates/registry.ts`. `CvSections` options cover common variations (section order, organisation first, custom headings, a dates column, stacked skill lists); full-page backgrounds use a `fixed` absolutely positioned `View`. Tests cover every registered template automatically.
 - **New example:** add an entry to `lib/examples/more.ts` (or `index.ts`) with a category; its page, listing and sitemap entry are generated, and tests check it renders on one PDF page.
 - **New guide:** add `app/(site)/<slug>/page.tsx` using `ContentPage`, then register it in `lib/guides.ts` (which feeds the `/cv-guides` hub and the sitemap) and link it from related pages.

@@ -62,6 +62,10 @@ export interface SectionOptions {
   orgFirst?: boolean;
   /** Custom section title renderer (e.g. with a side bar). */
   renderTitle?: (title: string) => ReactNode;
+  /** Show entry dates in a left column of this width (points), timeline style. */
+  datesColumn?: number;
+  /** "stacked" puts each skill/language on its own line (for narrow columns). */
+  listStyle?: "inline" | "stacked";
 }
 
 const join = (parts: string[], sep = ", ") => parts.filter(Boolean).join(sep);
@@ -112,13 +116,12 @@ export function CvSections({ cv, p, s, options = {} }: { cv: RenderCv; p: Primit
   /** Long sections may break between entries; the heading stays with the first entry's header. */
   const listSection = (id: SectionKey, items: EntryData[]) => (
     <View key={id} style={s.section}>
-      {items.map(({ title, sub, dates, paragraphs = [], bullets = [], link }, i) => (
-        <View key={i} style={[s.entry, i === items.length - 1 && { marginBottom: 0 }]}>
-          <View wrap={false} minPresenceAhead={36}>
-            {i === 0 ? heading(id) : null}
+      {items.map(({ title, sub, dates, paragraphs = [], bullets = [], link }, i) => {
+        const head = (
+          <>
             <View style={s.entryHead}>
               <Text style={s.entryTitle}>{title || sub}</Text>
-              {dates ? <Text style={s.entryDates}>{dates}</Text> : null}
+              {dates && !options.datesColumn ? <Text style={s.entryDates}>{dates}</Text> : null}
             </View>
             {title && sub ? <Text style={s.entrySub}>{sub}</Text> : null}
             {link ? (
@@ -126,26 +129,68 @@ export function CvSections({ cv, p, s, options = {} }: { cv: RenderCv; p: Primit
                 {link.text}
               </Link>
             ) : null}
-          </View>
-          {paragraphs.map((t, j) => (
-            <Text key={`p${j}`} style={s.paragraph}>
-              {t}
-            </Text>
-          ))}
-          {bullets.map((t, j) => (
-            <View key={`b${j}`} style={s.bulletRow} wrap={false}>
-              <Text style={s.bulletDot}>•</Text>
-              <Text style={s.bulletText}>{t}</Text>
+          </>
+        );
+        const body = (
+          <>
+            {paragraphs.map((t, j) => (
+              <Text key={`p${j}`} style={s.paragraph}>
+                {t}
+              </Text>
+            ))}
+            {bullets.map((t, j) => (
+              <View key={`b${j}`} style={s.bulletRow} wrap={false}>
+                <Text style={s.bulletDot}>•</Text>
+                <Text style={s.bulletText}>{t}</Text>
+              </View>
+            ))}
+          </>
+        );
+        const last = i === items.length - 1 && { marginBottom: 0 };
+        if (options.datesColumn) {
+          return (
+            <View key={i} style={[s.entry, last]}>
+              {i === 0 ? (
+                <View wrap={false} minPresenceAhead={48}>
+                  {heading(id)}
+                </View>
+              ) : null}
+              <View style={{ flexDirection: "row" }}>
+                <Text style={[s.entryDates, { width: options.datesColumn, marginLeft: 0, paddingRight: 10 }]}>{dates ?? ""}</Text>
+                <View style={{ flex: 1 }}>
+                  <View wrap={false} minPresenceAhead={24}>
+                    {head}
+                  </View>
+                  {body}
+                </View>
+              </View>
             </View>
-          ))}
-        </View>
-      ))}
+          );
+        }
+        return (
+          <View key={i} style={[s.entry, last]}>
+            <View wrap={false} minPresenceAhead={36}>
+              {i === 0 ? heading(id) : null}
+              {head}
+            </View>
+            {body}
+          </View>
+        );
+      })}
     </View>
   );
 
-  const inlineList = (items: { name: string; extra: string }[]) => (
-    <Text style={s.inline}>{items.map((k) => (k.extra ? `${k.name} (${k.extra})` : k.name)).join("  ·  ")}</Text>
-  );
+  const inlineList = (items: { name: string; extra: string }[]) =>
+    options.listStyle === "stacked" ? (
+      items.map((k, i) => (
+        <Text key={i} style={[s.inline, { marginBottom: 2 }]}>
+          {k.name}
+          {k.extra ? <Text style={s.muted}>{` — ${k.extra}`}</Text> : null}
+        </Text>
+      ))
+    ) : (
+      <Text style={s.inline}>{items.map((k) => (k.extra ? `${k.name} (${k.extra})` : k.name)).join("  ·  ")}</Text>
+    );
 
   const render = (key: SectionKey): ReactNode => {
     if (!hasSection(cv, key)) return null;

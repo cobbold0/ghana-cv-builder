@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { TEMPLATE_COMPONENTS } from "@/components/templates";
 import { htmlPrimitives } from "@/components/templates/html-primitives";
 import { A4 } from "@/components/templates/primitives";
@@ -29,19 +29,26 @@ export function CvPreview({ cv, templateId }: { cv: CV; templateId: TemplateId }
 
   useEffect(() => {
     const outer = outerRef.current;
-    const page = pageRef.current;
-    if (!outer || !page) return;
-    const ro = new ResizeObserver(() => {
-      setScale(Math.min(1, outer.clientWidth / PAGE_W));
-      // Measure the natural content height (without our min-height padding).
-      const inner = page.firstElementChild as HTMLElement | null;
-      const h = inner ? inner.scrollHeight : PAGE_H;
-      setPages(Math.max(1, Math.ceil((h - 2) / PAGE_H)));
-    });
+    if (!outer) return;
+    const ro = new ResizeObserver(() => setScale(Math.min(1, outer.clientWidth / PAGE_W)));
     ro.observe(outer);
-    ro.observe(page.firstElementChild ?? page);
     return () => ro.disconnect();
-  }, [templateId]);
+  }, []);
+
+  // After every render, measure the page's natural content height. Absolutely positioned
+  // backgrounds (side panels, stripes) are ignored so they don't inflate the page count.
+  useLayoutEffect(() => {
+    const cvPage = pageRef.current?.querySelector<HTMLElement>(".cv-page");
+    if (!cvPage) return;
+    let bottom = 0;
+    for (const child of Array.from(cvPage.children) as HTMLElement[]) {
+      if (getComputedStyle(child).position === "absolute") continue;
+      bottom = Math.max(bottom, child.offsetTop + child.offsetHeight);
+    }
+    const h = bottom + parseFloat(getComputedStyle(cvPage).paddingBottom || "0");
+    const next = Math.max(1, Math.ceil((h - 2) / PAGE_H));
+    if (next !== pages) setPages(next);
+  }, [data, templateId, pages, scale]);
 
   return (
     <div ref={outerRef} className="w-full">
@@ -56,7 +63,8 @@ export function CvPreview({ cv, templateId }: { cv: CV; templateId: TemplateId }
           aria-label="CV preview"
           role="img"
         >
-          <div style={{ minHeight: PAGE_H }} className="[&>.cv-page]:min-h-0!">
+          {/* The page stretches to whole pages so full-height side panels reach the bottom. */}
+          <div style={{ minHeight: pages * PAGE_H }} className="flex flex-col [&>.cv-page]:min-h-0! [&>.cv-page]:flex-auto">
             <Template cv={data} p={htmlPrimitives} />
           </div>
           {Array.from({ length: pages - 1 }, (_, i) => (

@@ -44,7 +44,7 @@ export default function Page() {
           <em>Preview</em> at the bottom of the screen.
         </li>
         <li>
-          <strong>Choose a template.</strong> Switch between Modern, Classic, Minimal, Graduate and Professional at any time.
+          <strong>Choose a template.</strong> Switch between ten designs — including single-column, two-column and timeline layouts — at any time.
         </li>
         <li>
           <strong>Download your PDF.</strong> The builder checks for missing or mistyped details first, then creates an A4 PDF on your device.
