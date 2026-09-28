@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ADS } from "@/lib/ads";
 import { SITE } from "@/lib/seo/site";
+import { GA_ID } from "./ThirdPartyScripts";
 import { CookieSettingsButton } from "./CookieSettingsButton";
 
 const GROUPS = [
@@ -66,7 +67,7 @@ export function SiteFooter() {
       <div className="border-t border-slate-200">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-xs text-slate-500">
           <p>© {new Date().getFullYear()} Ghana CV Builder. Your CV is created and stored on your own device.</p>
-          {ADS.client ? <CookieSettingsButton /> : null}
+          {GA_ID || ADS.client ? <CookieSettingsButton /> : null}
         </div>
       </div>
     </footer>

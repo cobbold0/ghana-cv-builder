@@ -7,7 +7,7 @@ It must always reflect the actual current state of the project.
 ## Owner must do
 
 1. **AdSense:** in the `cobbold.dev` site, tick "I've published the ads.txt file", click **Verify**, then **Request review**. (`https://cobbold.dev/ads.txt` is served by the `my-portfolio` project and covers every `*.cobbold.dev` site.)
-2. **After AdSense approval:** create a Display ad unit (Ads → By ad unit) and set its ID as `NEXT_PUBLIC_ADSENSE_SLOT` in Vercel (or give it to Claude to build in), then redeploy. Turn on the consent message under **Privacy & messaging** before serving ads to EEA/UK visitors.
+2. **After AdSense approval:** create a Display ad unit (Ads → By ad unit) and set its ID as `NEXT_PUBLIC_ADSENSE_SLOT` in Vercel (or give it to Claude to build in), then redeploy. Google requires a certified (IAB TCF) consent message for ads served in the EEA/UK/Switzerland; the site's own banner is not TCF-certified. If you turn on the **Privacy & messaging** consent message for those regions, visitors there may see both it and the site banner — tell Claude and the site banner can be hidden for those regions.
 3. **Delete the old branch** `claude/amazing-faraday-spzpl3` on GitHub (Branches page). It is fully merged into `main`.
 4. **my-portfolio:** merge `Production` back into `Develop` (an `ads.txt` commit was pushed directly to `Production`).
 5. **Search Console:** if the sitemap still shows "could not be read", remove and resubmit `sitemap.xml`, and use URL Inspection → Test live URL.
@@ -56,7 +56,7 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Google Analytics 4** (`G-PP7163Z5PK`) loads on production builds, with product events that never include CV content.
 - **Deployment:** live on Vercel at `https://ghanacv.cobbold.dev` (DNS on Cloudflare); `ads.txt` verified on both `ghanacv.cobbold.dev` and `cobbold.dev`.
 - **AdSense** publisher `ca-pub-5952797612434262` wired in: verification meta tag on every page, ad script on content pages only, `/ads.txt`.
-- **Cookie consent:** Google Consent Mode v2 — analytics and ad storage denied by default for EEA/UK/Swiss visitors until they answer Google's AdSense consent message; granted elsewhere. "Cookie settings" footer link reopens the message. Verified in a browser that consent defaults precede the Analytics config.
+- **Cookie consent:** site banner with Google Consent Mode v2 (`lib/consent.ts`, `components/layout/ConsentBanner.tsx`). Ads always show; personalised ads (`ad_user_data`, `ad_personalization`) and analytics cookies wait for "Accept", and "No thanks" also sets AdSense `requestNonPersonalizedAds`. `ad_storage` is granted by default so non-personalised ads work, except in the EEA/UK/Switzerland where it also waits for "Accept". The banner is hidden in the builder so it never covers its controls. "Cookie settings" in the footer reopens it. Covered by `tests/e2e/consent.spec.ts`.
 - **Ads:** two in-content ad units on the long guides (how to write a CV, CV format, Ghana CV, professional CV), one on other content pages, none in the builder; unfilled slots are hidden.
 - **Contact:** augustine@cobbold.dev on the About, Privacy and Terms pages and in the footer.
 - **Monetisation hooks:** labelled ad slots on content pages only (never in the builder), `ads.txt` generation, analytics events without CV content — all disabled until configured.

@@ -38,17 +38,18 @@ export default function Page() {
 
       <h2>Advertising</h2>
       <p>
-        Guide and example pages may show advertising from third parties such as Google AdSense. Ads are not shown inside the CV builder. Advertising
-        providers may use cookies to show ads and measure their performance, which may include personalised advertising based on your visits to this
-        and other websites. You can manage personalised advertising in your Google account&apos;s ad settings.
+        Guide and example pages may show advertising from third parties such as Google AdSense. Ads are not shown inside the CV builder. Ads are
+        shown whether or not you accept cookies. If you accept, ads may be personalised based on your visits to this and other websites; if you choose
+        “No thanks”, you see non-personalised ads. You can also manage personalised advertising in your Google account&apos;s ad settings.
       </p>
 
       <h2>Cookies and your choices</h2>
       <p>
-        Visitors in the European Economic Area, the United Kingdom and Switzerland are asked for consent by Google&apos;s consent message before
-        analytics or advertising cookies are used. Until you choose, analytics and ads run without cookies. Everywhere else, these cookies are used
-        by default. You can change your choice at any time using the <em>Cookie settings</em> link at the bottom of each page (where available),
-        or by clearing this site&apos;s cookies in your browser.
+        A cookie banner asks whether we may use cookies for analytics and personalised ads. Until you accept, analytics runs without cookies and
+        ads are not personalised. Non-personalised ads may still use cookies for things like limiting how often an ad appears and preventing fraud,
+        except in the European Economic Area, the United Kingdom and Switzerland, where no advertising cookies are used until you accept. You can
+        change your choice at any time using the <em>Cookie settings</em> link at the bottom of each page, or by clearing this site&apos;s data in
+        your browser.
       </p>
 
       <h2>Hosting</h2>

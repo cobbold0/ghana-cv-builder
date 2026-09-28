@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import { GA_ID, ThirdPartyScripts } from "@/components/layout/ThirdPartyScripts";
+import { ConsentBanner } from "@/components/layout/ConsentBanner";
 import { CONSENT_DEFAULT_SCRIPT } from "@/lib/consent";
 import { ADS } from "@/lib/ads";
 import { SITE } from "@/lib/seo/site";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </a>
         {children}
         <ThirdPartyScripts analytics />
+        <ConsentBanner />
       </body>
     </html>
   );

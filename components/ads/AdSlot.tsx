@@ -3,16 +3,11 @@
 import { useEffect, useRef } from "react";
 import { ADS } from "@/lib/ads";
 
-declare global {
-  interface Window {
-    adsbygoogle?: unknown[];
-  }
-}
-
 /**
  * A single, clearly labelled ad unit for content pages. Never used inside the
  * CV builder. Renders nothing until an ad client and slot are configured, or
- * a labelled placeholder in development when NEXT_PUBLIC_AD_PLACEHOLDERS=true.
+ * a labelled placeholder in development when NEXT_PUBLIC_AD_PLACEHOLDERS=true. Ads show whether or
+ * not the visitor consents; without consent they are non-personalised (see lib/consent.ts).
  */
 export function AdSlot({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLModElement>(null);
