@@ -7,17 +7,14 @@ import { MORE_EXAMPLES } from "./more";
  * All people and employers are fictional; schools and public institutions are
  * named only to make the examples realistic.
  */
-export const EXAMPLE_CATEGORIES = {
-  students: "Students and graduates",
-  business: "Business and office",
-  "health-education": "Health and education",
-  technical: "Technical and trades",
-} as const;
-export type ExampleCategory = keyof typeof EXAMPLE_CATEGORIES;
+import { type ExampleCategory, type ExampleLevel } from "./meta";
+export { EXAMPLE_CATEGORIES, EXAMPLE_LEVELS, type ExampleCategory, type ExampleLevel } from "./meta";
 
 export interface CvExample {
   slug: string;
   category: ExampleCategory;
+  /** Entry level (students, school leavers, first jobs) or experienced. */
+  level: ExampleLevel;
   title: string;
   /** Short label for cards and links. */
   label: string;
@@ -38,6 +35,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "graduate",
     category: "students",
+    level: "entry",
     title: "Graduate CV example",
     label: "Graduate",
     metaTitle: "Graduate CV Example (Ghana) — With Tips You Can Copy",
@@ -132,6 +130,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "student",
     category: "students",
+    level: "entry",
     title: "Student CV example",
     label: "Student",
     metaTitle: "Student CV Example — For Part-Time Jobs, Volunteering and Programmes",
@@ -231,6 +230,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "internship",
     category: "students",
+    level: "entry",
     title: "Internship CV example",
     label: "Internship",
     metaTitle: "Internship CV Example — Industrial Attachment and Internship Applications",
@@ -329,6 +329,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "software-developer",
     category: "technical",
+    level: "experienced",
     title: "Software developer CV example",
     label: "Software developer",
     metaTitle: "Software Developer CV Example — Junior to Mid-Level",
@@ -431,6 +432,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "accountant",
     category: "business",
+    level: "experienced",
     title: "Accountant CV example",
     label: "Accountant",
     metaTitle: "Accountant CV Example — With Professional Qualifications",
@@ -528,6 +530,7 @@ const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "teacher",
     category: "health-education",
+    level: "experienced",
     title: "Teacher CV example",
     label: "Teacher",
     metaTitle: "Teacher CV Example — For Basic and Secondary School Teachers",

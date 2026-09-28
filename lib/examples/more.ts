@@ -9,6 +9,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "school-leaver",
     category: "students",
+    level: "entry",
     title: "School leaver CV example (no experience)",
     label: "School leaver",
     metaTitle: "CV Example With No Work Experience — School Leaver (WASSCE)",
@@ -101,6 +102,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "nurse",
     category: "health-education",
+    level: "experienced",
     title: "Nurse CV example",
     label: "Nurse",
     metaTitle: "Nurse CV Example — Registered General Nurse",
@@ -181,6 +183,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "customer-service",
     category: "business",
+    level: "experienced",
     title: "Customer service CV example",
     label: "Customer service",
     metaTitle: "Customer Service CV Example — Call Centre and Front Desk",
@@ -255,6 +258,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "marketing-officer",
     category: "business",
+    level: "experienced",
     title: "Marketing officer CV example",
     label: "Marketing officer",
     metaTitle: "Marketing CV Example — Digital and Brand Marketing Officer",
@@ -326,6 +330,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "bank-teller",
     category: "business",
+    level: "experienced",
     title: "Bank teller CV example",
     label: "Bank teller",
     metaTitle: "Bank Teller CV Example — Banking and Cash Operations",
@@ -395,6 +400,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "administrative-assistant",
     category: "business",
+    level: "experienced",
     title: "Administrative assistant CV example",
     label: "Administrative assistant",
     metaTitle: "Administrative Assistant CV Example — Office and Secretary Roles",
@@ -464,6 +470,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "civil-engineer",
     category: "technical",
+    level: "experienced",
     title: "Civil engineer CV example",
     label: "Civil engineer",
     metaTitle: "Civil Engineer CV Example — Site and Structural Engineering",
@@ -533,6 +540,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "driver",
     category: "technical",
+    level: "experienced",
     title: "Driver CV example",
     label: "Driver",
     metaTitle: "Driver CV Example — Company and Delivery Driver",
@@ -606,6 +614,7 @@ export const MORE_EXAMPLES: CvExample[] = [
   {
     slug: "security-officer",
     category: "technical",
+    level: "experienced",
     title: "Security officer CV example",
     label: "Security officer",
     metaTitle: "Security Officer CV Example — Guards and Supervisors",
