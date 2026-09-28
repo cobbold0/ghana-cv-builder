@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { ContentPage } from "@/components/content/ContentPage";
+import { TemplateFilter } from "@/components/cv/TemplateFilter";
 import { TemplateThumbnail } from "@/components/cv/TemplateThumbnail";
 import { CREATE_CTA, LINKS } from "@/lib/seo/links";
 import { pageMetadata } from "@/lib/seo/site";
-import { TEMPLATES } from "@/lib/templates/registry";
+import { TEMPLATE_STYLES, TEMPLATES } from "@/lib/templates/registry";
 import { buttonClass } from "@/lib/ui";
 
 const title = "Free CV Templates";
@@ -30,32 +31,44 @@ export default function Page() {
       related={[LINKS.examples, LINKS.format, LINKS.professional, LINKS.ghana]}
       cta={CREATE_CTA}
     >
-      <ul className="grid gap-10 md:grid-cols-2">
-        {TEMPLATES.map((t) => (
-          <li key={t.id} className="flex flex-col gap-5 rounded-2xl border border-slate-200 p-5 sm:flex-row">
-            <div className="flex justify-center">
-              <TemplateThumbnail templateId={t.id} width={210} label={`${t.name} CV template filled with example details`} />
-            </div>
-            <div className="flex flex-1 flex-col">
-              <h2 className="text-xl font-bold text-slate-900">{t.name}</h2>
-              <p className="mt-1 text-sm font-medium text-brand-700">{t.tagline}</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{t.description}</p>
-              <h3 className="mt-4 text-sm font-semibold text-slate-900">Good for</h3>
-              <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-slate-600">
-                {t.bestFor.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-              <p className="mt-3 text-xs text-slate-500">{t.supportsPhoto ? "Optional photo supported." : "No photo."}</p>
-              <div className="mt-auto pt-5">
-                <Link href={`/builder?template=${t.id}`} className={buttonClass("primary", "md", "w-full sm:w-auto")}>
-                  Use this template
-                </Link>
+      <TemplateFilter
+        templates={TEMPLATES}
+        cards={Object.fromEntries(
+          TEMPLATES.map((t) => [
+            t.id,
+            <>
+              <div className="flex justify-center">
+                <TemplateThumbnail templateId={t.id} width={210} label={`${t.name} CV template filled with example details`} />
               </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+              <div className="flex flex-1 flex-col">
+                <h2 className="text-xl font-bold text-slate-900">{t.name}</h2>
+                <p className="mt-1 text-sm font-medium text-brand-700">{t.tagline}</p>
+                <p className="mt-2 flex flex-wrap gap-1.5">
+                  {t.styles.map((st) => (
+                    <span key={st} className="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-700">
+                      {TEMPLATE_STYLES[st]}
+                    </span>
+                  ))}
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-700">{t.columns === 1 ? "Single column" : "Two columns"}</span>
+                  {t.supportsPhoto ? <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-700">Photo</span> : null}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">{t.description}</p>
+                <h3 className="mt-4 text-sm font-semibold text-slate-900">Good for</h3>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-slate-600">
+                  {t.bestFor.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-5">
+                  <Link href={`/builder?template=${t.id}`} className={buttonClass("primary", "md", "w-full sm:w-auto")}>
+                    Use the {t.name} template
+                  </Link>
+                </div>
+              </div>
+            </>,
+          ]),
+        )}
+      />
 
       <section className="prose-cv mx-auto mt-16 max-w-3xl">
         <h2>How to choose a CV template</h2>

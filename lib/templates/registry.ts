@@ -7,9 +7,21 @@ export interface TemplateInfo {
   bestFor: string[];
   font: "sans" | "serif";
   supportsPhoto: boolean;
+  /** Number of columns in the body; single-column is safest for applicant tracking systems. */
+  columns: 1 | 2;
+  /** Style tags used by the template filter. */
+  styles: TemplateStyle[];
   /** Reserved for future premium templates; all current templates are free. */
   premium: boolean;
 }
+
+export const TEMPLATE_STYLES = {
+  simple: "Simple",
+  modern: "Modern",
+  professional: "Professional",
+  creative: "Creative",
+} as const;
+export type TemplateStyle = keyof typeof TEMPLATE_STYLES;
 
 export const TEMPLATE_IDS = ["modern", "classic", "minimal", "graduate", "professional", "sidebar", "timeline", "executive", "compact", "bold"] as const;
 export type TemplateId = (typeof TEMPLATE_IDS)[number];
@@ -25,6 +37,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Most private-sector roles", "Tech, marketing and business jobs", "Online applications"],
     font: "sans",
     supportsPhoto: true,
+    columns: 1,
+    styles: ["modern"],
     premium: false,
   },
   {
@@ -36,6 +50,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Banking, law and public service", "Teaching and academic roles", "Printed applications"],
     font: "serif",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["professional", "simple"],
     premium: false,
   },
   {
@@ -47,6 +63,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Design, writing and creative roles", "Experienced professionals", "Short, focused CVs"],
     font: "sans",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["simple"],
     premium: false,
   },
   {
@@ -58,6 +76,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Students and recent graduates", "National service and internship applications", "First jobs"],
     font: "sans",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["simple", "modern"],
     premium: false,
   },
   {
@@ -69,6 +89,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Mid-career and senior roles", "Sales, management and consulting", "Roles where a photo is expected"],
     font: "sans",
     supportsPhoto: true,
+    columns: 1,
+    styles: ["professional"],
     premium: false,
   },
   {
@@ -80,6 +102,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Modern offices and start-ups", "Roles where skills matter as much as history", "CVs with many skills or languages"],
     font: "sans",
     supportsPhoto: true,
+    columns: 2,
+    styles: ["modern", "creative"],
     premium: false,
   },
   {
@@ -91,6 +115,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Steady career progression", "Public service and NGOs", "Showing long tenure clearly"],
     font: "sans",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["modern", "professional"],
     premium: false,
   },
   {
@@ -102,6 +128,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Senior and management roles", "Board and director applications", "Finance, law and consulting"],
     font: "serif",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["professional"],
     premium: false,
   },
   {
@@ -113,6 +141,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Long careers and many roles", "Technical and engineering CVs", "Keeping to two pages"],
     font: "sans",
     supportsPhoto: false,
+    columns: 1,
+    styles: ["simple", "professional"],
     premium: false,
   },
   {
@@ -124,6 +154,8 @@ export const TEMPLATES: TemplateInfo[] = [
     bestFor: ["Sales and marketing", "Creative and media roles", "Standing out in a pile of CVs"],
     font: "sans",
     supportsPhoto: true,
+    columns: 1,
+    styles: ["creative", "modern"],
     premium: false,
   },
 ];
