@@ -25,7 +25,7 @@ export default async function Page({ params }: PageProps<"/cv-examples/[slug]">)
   const ex = getExample((await params).slug);
   if (!ex) notFound();
   const template = getTemplateInfo(ex.templateId);
-  const others = EXAMPLES.filter((e) => e.slug !== ex.slug).slice(0, 2);
+  const others = [...EXAMPLES.filter((e) => e.slug !== ex.slug && e.category === ex.category), ...EXAMPLES.filter((e) => e.category !== ex.category)].slice(0, 2);
 
   return (
     <ContentPage

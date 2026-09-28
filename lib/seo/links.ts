@@ -11,6 +11,14 @@ export const LINKS = {
   professional: { href: "/professional-cv", label: "Professional CV guide", description: "Make your CV look and read like a professional's." },
   templates: { href: "/cv-templates", label: "CV templates", description: "Five free, printable A4 templates." },
   examples: { href: "/cv-examples", label: "CV examples", description: "Realistic example CVs you can open and edit." },
+  summary: { href: "/professional-summary", label: "How to write a professional summary", description: "A simple formula and examples for every career stage." },
+  experience: { href: "/work-experience-on-cv", label: "How to describe work experience", description: "Turn duties into achievement bullet points." },
+  skills: { href: "/cv-skills", label: "What skills to put on a CV", description: "Choosing, grouping and proving the right skills." },
+  noExperience: { href: "/cv-with-no-experience", label: "CV with no experience", description: "What to include when you have never had a formal job." },
+  mistakes: { href: "/cv-mistakes", label: "CV mistakes to avoid", description: "The common problems recruiters see, and how to fix them." },
+  cvVsResume: { href: "/cv-vs-resume", label: "CV vs résumé", description: "The difference, and which one to send." },
+  letter: { href: "/application-letter", label: "How to write an application letter", description: "Structure and example for job application letters." },
+  guides: { href: "/cv-guides", label: "All CV guides", description: "Every guide on writing and sending your CV." },
   builder: { href: "/cv-builder", label: "How the CV builder works", description: "What you can do with the builder and how your data is kept private." },
 } satisfies Record<string, RelatedLink>;
 

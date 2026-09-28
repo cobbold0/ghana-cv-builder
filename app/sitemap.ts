@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 import { EXAMPLES } from "@/lib/examples";
+import { GUIDES } from "@/lib/guides";
 import { CONTENT_UPDATED } from "@/lib/seo/content";
 import { absoluteUrl } from "@/lib/seo/site";
 
 /** Indexable pages only. The builder (/builder) is noindex and excluded. */
-export const INDEXABLE_PATHS = [
+export const INDEXABLE_PATHS = [...new Set([
   "/",
+  "/cv-guides",
   "/cv-builder",
   "/cv-templates",
   "/cv-examples",
@@ -19,8 +21,9 @@ export const INDEXABLE_PATHS = [
   "/about",
   "/privacy",
   "/terms",
+  ...GUIDES.map((g) => g.href),
   ...EXAMPLES.map((e) => `/cv-examples/${e.slug}`),
-];
+])];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return INDEXABLE_PATHS.map((path) => ({

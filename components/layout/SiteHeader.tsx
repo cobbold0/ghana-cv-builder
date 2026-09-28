@@ -6,7 +6,7 @@ export const NAV = [
   { href: "/cv-templates", label: "Templates" },
   { href: "/cv-examples", label: "Examples" },
   { href: "/how-to-write-a-cv", label: "How to write a CV" },
-  { href: "/cv-format", label: "CV format" },
+  { href: "/cv-guides", label: "Guides" },
 ];
 
 export function SiteHeader() {

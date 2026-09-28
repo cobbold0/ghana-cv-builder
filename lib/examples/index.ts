@@ -1,13 +1,23 @@
 import { cvSchema, type CV } from "@/lib/cv/schema";
 import type { TemplateId } from "@/lib/templates/registry";
+import { MORE_EXAMPLES } from "./more";
 
 /**
  * Example CVs for the /cv-examples pages and "Edit this example" in the builder.
  * All people and employers are fictional; schools and public institutions are
  * named only to make the examples realistic.
  */
+export const EXAMPLE_CATEGORIES = {
+  students: "Students and graduates",
+  business: "Business and office",
+  "health-education": "Health and education",
+  technical: "Technical and trades",
+} as const;
+export type ExampleCategory = keyof typeof EXAMPLE_CATEGORIES;
+
 export interface CvExample {
   slug: string;
+  category: ExampleCategory;
   title: string;
   /** Short label for cards and links. */
   label: string;
@@ -24,9 +34,10 @@ export interface CvExample {
 
 const cv = (data: unknown) => cvSchema.parse(data);
 
-export const EXAMPLES: CvExample[] = [
+const CORE_EXAMPLES: CvExample[] = [
   {
     slug: "graduate",
+    category: "students",
     title: "Graduate CV example",
     label: "Graduate",
     metaTitle: "Graduate CV Example (Ghana) — With Tips You Can Copy",
@@ -120,6 +131,7 @@ export const EXAMPLES: CvExample[] = [
   },
   {
     slug: "student",
+    category: "students",
     title: "Student CV example",
     label: "Student",
     metaTitle: "Student CV Example — For Part-Time Jobs, Volunteering and Programmes",
@@ -218,6 +230,7 @@ export const EXAMPLES: CvExample[] = [
   },
   {
     slug: "internship",
+    category: "students",
     title: "Internship CV example",
     label: "Internship",
     metaTitle: "Internship CV Example — Industrial Attachment and Internship Applications",
@@ -315,6 +328,7 @@ export const EXAMPLES: CvExample[] = [
   },
   {
     slug: "software-developer",
+    category: "technical",
     title: "Software developer CV example",
     label: "Software developer",
     metaTitle: "Software Developer CV Example — Junior to Mid-Level",
@@ -416,6 +430,7 @@ export const EXAMPLES: CvExample[] = [
   },
   {
     slug: "accountant",
+    category: "business",
     title: "Accountant CV example",
     label: "Accountant",
     metaTitle: "Accountant CV Example — With Professional Qualifications",
@@ -512,6 +527,7 @@ export const EXAMPLES: CvExample[] = [
   },
   {
     slug: "teacher",
+    category: "health-education",
     title: "Teacher CV example",
     label: "Teacher",
     metaTitle: "Teacher CV Example — For Basic and Secondary School Teachers",
@@ -592,6 +608,8 @@ export const EXAMPLES: CvExample[] = [
     }),
   },
 ];
+
+export const EXAMPLES: CvExample[] = [...CORE_EXAMPLES, ...MORE_EXAMPLES];
 
 export function getExample(slug: string): CvExample | undefined {
   return EXAMPLES.find((e) => e.slug === slug);

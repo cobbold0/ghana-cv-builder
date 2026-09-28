@@ -19,7 +19,7 @@ It must always reflect the actual current state of the project.
 Prioritised by practical value.
 
 1. **Contact/about details** once the owner provides a contact email.
-2. **More useful content:** CV with no experience, how to write a professional summary, CV mistakes, CV vs résumé, how long a CV should be; more examples (nurse, sales, banking, driver, customer service).
+2. **More content:** further examples (pharmacist, electrician, procurement, sales representative, HR officer) and guides (interview tips, CV for jobs abroad, references) based on Search Console queries.
 3. **Cover letter builder** reusing the CV's personal details.
 4. **Multiple CVs and "Duplicate this CV"** stored locally, for tailoring to different jobs.
 5. **Section reordering and custom sections** (awards, volunteering, publications).
@@ -43,7 +43,8 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Validation and error states:** inline errors after leaving a field; export blocked with a clear message and focus on the first problem; PDF failure message; storage-blocked and storage-full messages; recovered-draft message; 404 and error pages.
 - **Loading states:** builder loading placeholder, "Preparing PDF…" button state, photo processing state.
 - **Local persistence:** autosave, restore on reload, save on page close, backups (save/open), salvage of damaged drafts.
-- **Example CVs:** six fictional examples with pages and one-click loading into the builder.
+- **Example CVs:** 15 fictional examples in four categories (students and graduates, business and office, health and education, technical and trades), each with its own page and one-click loading into the builder; all verified to render as a one-page PDF.
+- **Guides:** 14 guides plus a `/cv-guides` hub, including professional summary, work experience, skills, CV with no experience, CV mistakes, CV vs résumé and application letters.
 - **SEO:** production domain `https://ghanacv.cobbold.dev` built in (sitemap, robots.txt, canonical and Open Graph URLs verified against a production build); optional Search Console verification tag; unique titles and descriptions, canonical URLs, Open Graph image, BreadcrumbList/Article/WebSite/WebApplication structured data, sitemap, robots.txt, noindex builder, one H1 per page, internal linking between guides, examples and templates. Checked automatically for every sitemap URL.
 - **Accessibility:** labelled fields, error messages linked to inputs, keyboard-operable controls, native dialogs, skip link, visible focus; no axe WCAG 2.1 A/AA violations on the tested pages.
 - **Mobile:** no horizontal overflow on the builder in edit or preview mode; full journey passes on a Pixel 7 viewport.

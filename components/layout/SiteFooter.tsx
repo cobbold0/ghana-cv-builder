@@ -16,10 +16,12 @@ const GROUPS = [
   {
     title: "Guides",
     links: [
+      { href: "/cv-guides", label: "All CV guides" },
       { href: "/how-to-write-a-cv", label: "How to write a CV" },
       { href: "/cv-format", label: "CV format" },
       { href: "/cv-template-ghana", label: "CV template for Ghana" },
-      { href: "/professional-cv", label: "Professional CV" },
+      { href: "/professional-summary", label: "Professional summary" },
+      { href: "/application-letter", label: "Application letter" },
     ],
   },
   {
@@ -28,6 +30,7 @@ const GROUPS = [
       { href: "/graduate-cv", label: "Graduate CV" },
       { href: "/student-cv", label: "Student CV" },
       { href: "/internship-cv", label: "Internship CV" },
+      { href: "/cv-with-no-experience", label: "CV with no experience" },
     ],
   },
   {

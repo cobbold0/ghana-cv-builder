@@ -190,7 +190,7 @@ export default function HomePage() {
             <div>
               <h3 className="font-semibold text-slate-900">Examples you can edit</h3>
               <ul className="mt-3 grid grid-cols-2 gap-2">
-                {EXAMPLES.map((e) => (
+                {EXAMPLES.slice(0, 8).map((e) => (
                   <li key={e.slug}>
                     <Link href={`/cv-examples/${e.slug}`} className="block rounded-lg border border-slate-200 px-4 py-3 text-sm font-medium text-slate-800 hover:border-brand-600 hover:bg-brand-50">
                       {e.label} CV
@@ -198,6 +198,9 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              <Link href="/cv-examples" className="mt-3 inline-block text-sm font-medium text-brand-700 underline underline-offset-2">
+                See all {EXAMPLES.length} examples
+              </Link>
             </div>
             <div>
               <h3 className="font-semibold text-slate-900">Practical guides</h3>
@@ -207,7 +210,10 @@ export default function HomePage() {
                   { href: "/cv-format", label: "CV format: layout, length and sections" },
                   { href: "/cv-template-ghana", label: "Writing a CV for jobs in Ghana" },
                   { href: "/graduate-cv", label: "Graduate CV guide" },
-                  { href: "/internship-cv", label: "Internship and attachment CVs" },
+                  { href: "/cv-with-no-experience", label: "How to write a CV with no experience" },
+                  { href: "/professional-summary", label: "How to write a professional summary" },
+                  { href: "/application-letter", label: "How to write an application letter" },
+                  { href: "/cv-guides", label: "All CV guides" },
                 ].map((g) => (
                   <li key={g.href}>
                     <Link href={g.href} className="text-brand-700 underline underline-offset-2">

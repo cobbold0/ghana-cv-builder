@@ -6,6 +6,7 @@ import { CvPdfDocument, registerFonts } from "@/lib/pdf/document";
 import { cvSchema, emptyCv, newId, type CV } from "@/lib/cv/schema";
 import { SAMPLE_CV } from "@/lib/cv/sample";
 import { TEMPLATE_IDS, type TemplateId } from "@/lib/templates/registry";
+import { EXAMPLES } from "@/lib/examples";
 
 const OUT = process.env.PDF_OUT;
 
@@ -68,6 +69,11 @@ describe("PDF export", () => {
     const pdf = buf.toString("latin1");
     expect(pdf).toContain("mailto:ama.owusu@example.com");
     expect(pdf).toContain("https://linkedin.com/in/ama-owusu-example");
+  });
+
+  it.each(EXAMPLES.map((e) => [e.slug, e] as const))("renders the %s example on one page", async (slug, ex) => {
+    const buf = await render(ex.cv, ex.templateId, `example-${slug}`);
+    expect(pageCount(buf)).toBe(1);
   });
 
   it("renders a CV with no experience and unusual characters", async () => {

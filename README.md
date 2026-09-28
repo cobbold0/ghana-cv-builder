@@ -12,7 +12,7 @@ No account is needed. CVs are built, stored and exported entirely in the user's 
 - **PDF export** — generated on the device with embedded fonts, selectable text, clickable links, consistent margins on every page and headings kept with their content.
 - **Validation** — email, phone, links, dates (end after start) and length limits. Problems are shown inline; export is blocked until they're fixed, and the first problem field gets focus.
 - **Saving** — autosaves to `localStorage`; "Start a new CV" (with confirmation); backup file save/open for moving between devices. Damaged saved data is salvaged section by section instead of lost.
-- **Examples** — six fictional example CVs, each with its own page and an "Edit this example" link that loads it into the builder.
+- **Examples** — 15 fictional example CVs grouped by category, each with its own page and an "Edit this example" link that loads it into the builder.
 - **SEO content** — homepage, builder guide, template gallery, examples, and guides (how to write a CV, CV format, Ghana-specific advice, graduate, student, internship, professional CVs), plus about, privacy and terms.
 - **Monetisation hooks** — an `AdSlot` component used only on content pages, and analytics events. Both are inactive until configured.
 
@@ -109,5 +109,5 @@ public/fonts/       subsetted .ttf (PDF) and .woff2 (web) fonts
 ### Extending
 
 - **New template:** add a renderer in `components/templates/`, register it in `components/templates/index.ts` and add metadata in `lib/templates/registry.ts`. Tests cover every registered template automatically.
-- **New example:** add an entry to `lib/examples/index.ts`; its page and sitemap entry are generated.
-- **New guide:** add `app/(site)/<slug>/page.tsx` using `ContentPage`, then add the path to `INDEXABLE_PATHS` in `app/sitemap.ts` and link it from related pages.
+- **New example:** add an entry to `lib/examples/more.ts` (or `index.ts`) with a category; its page, listing and sitemap entry are generated, and tests check it renders on one PDF page.
+- **New guide:** add `app/(site)/<slug>/page.tsx` using `ContentPage`, then register it in `lib/guides.ts` (which feeds the `/cv-guides` hub and the sitemap) and link it from related pages.

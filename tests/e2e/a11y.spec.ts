@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const PAGES = ["/", "/cv-templates", "/cv-examples/graduate", "/how-to-write-a-cv", "/builder", "/builder?example=accountant"];
+const PAGES = ["/", "/cv-templates", "/cv-examples", "/cv-examples/graduate", "/cv-guides", "/how-to-write-a-cv", "/work-experience-on-cv", "/builder", "/builder?example=accountant"];
 
 for (const path of PAGES) {
   test(`no detectable accessibility violations on ${path}`, async ({ page }) => {
