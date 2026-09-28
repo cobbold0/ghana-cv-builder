@@ -71,6 +71,14 @@ test("an example can be opened and edited", async ({ page }) => {
   await expect(page.getByRole("radio", { name: "Graduate" })).toBeChecked();
 });
 
+test("content pages have no horizontal overflow", async ({ page }) => {
+  for (const path of ["/", "/cv-templates", "/cv-examples", "/how-to-write-a-cv"]) {
+    await page.goto(path);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow, path).toBeLessThanOrEqual(0);
+  }
+});
+
 test("the builder has no horizontal overflow in edit or preview", async ({ page }) => {
   await page.goto("/builder?example=software-developer");
   const overflow = () => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

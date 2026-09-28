@@ -10,7 +10,8 @@ export type AnalyticsEvent =
   | "preview_opened"
   | "pdf_exported"
   | "pdf_export_failed"
-  | "example_loaded";
+  | "example_loaded"
+  | "search_selected";
 
 type Props = Record<string, string | number | boolean>;
 

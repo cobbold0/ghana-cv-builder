@@ -44,6 +44,7 @@ Verified with the automated test suite (115 unit/component tests, 23 end-to-end 
 - **Loading states:** builder loading placeholder, "Preparing PDF…" button state, photo processing state.
 - **Local persistence:** autosave, restore on reload, save on page close, backups (save/open), salvage of damaged drafts.
 - **Example CVs:** 15 fictional examples in four categories (students and graduates, business and office, health and education, technical and trades), each with its own page and one-click loading into the builder; all verified to render as a one-page PDF.
+- **Global search:** header search (Ctrl/⌘ K or "/") across guides, examples, templates and key pages; a small static index (`/search-index.json`) loads on first open; keyboard navigable and accessible.
 - **Example filter:** `/cv-examples` can be filtered by category and experience level, with a job-title search; cards stay server-rendered and example CV data is not sent to the browser.
 - **Template filter:** `/cv-templates` can be filtered by style (Simple, Modern, Professional, Creative), photo support and single-column layout; cards stay server-rendered for search engines.
 - **Guides:** 14 guides plus a `/cv-guides` hub, including professional summary, work experience, skills, CV with no experience, CV mistakes, CV vs résumé and application letters.

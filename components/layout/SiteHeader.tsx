@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buttonClass } from "@/lib/ui";
 import { Logo } from "./Logo";
+import { SiteSearch } from "./SiteSearch";
 
 export const NAV = [
   { href: "/cv-templates", label: "Templates" },
@@ -12,7 +13,7 @@ export const NAV = [
 export function SiteHeader() {
   return (
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:px-4">
         <Logo />
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-1">
@@ -25,7 +26,8 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <SiteSearch />
           <Link href="/builder" className={buttonClass("primary", "sm", "whitespace-nowrap")}>
             Create my CV
           </Link>

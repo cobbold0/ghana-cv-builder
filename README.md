@@ -13,6 +13,7 @@ No account is needed. CVs are built, stored and exported entirely in the user's 
 - **Validation** — email, phone, links, dates (end after start) and length limits. Problems are shown inline; export is blocked until they're fixed, and the first problem field gets focus.
 - **Saving** — autosaves to `localStorage`; "Start a new CV" (with confirmation); backup file save/open for moving between devices. Damaged saved data is salvaged section by section instead of lost.
 - **Examples** — 15 fictional example CVs grouped by category, each with its own page and an "Edit this example" link that loads it into the builder.
+- **Site search** — a header search dialog (Ctrl/⌘ K or "/") over guides, examples, templates and key pages, served from a static `/search-index.json` built from the same registries.
 - **SEO content** — homepage, builder guide, template gallery, examples, and guides (how to write a CV, CV format, Ghana-specific advice, graduate, student, internship, professional CVs), plus about, privacy and terms.
 - **Monetisation hooks** — an `AdSlot` component used only on content pages, and analytics events. Both are inactive until configured.
 
