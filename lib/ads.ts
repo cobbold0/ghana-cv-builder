@@ -1,20 +1,14 @@
 /**
  * Advertising configuration. Ads appear on content pages and download flows.
+ * Hardcoded directly with zero environment variables needed.
  */
 export const ADS = {
-  /** AdSense publisher. Production defaults to the site's account; set the env var to override, or "off" to disable. */
-  client:
-    process.env.NEXT_PUBLIC_ADSENSE_CLIENT === "off"
-      ? ""
-      : process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-5952797612434262",
-  /** Display ad unit id for in-content placements. */
-  slot: process.env.NEXT_PUBLIC_ADSENSE_SLOT || "1273092714",
-  /** Show labelled placeholder boxes (development only). Default false. */
-  placeholders: process.env.NEXT_PUBLIC_AD_PLACEHOLDERS === "true",
+  client: "ca-pub-5952797612434262",
+  slot: "1273092714",
+  placeholders: false,
 };
 
 /** Publisher id for ads.txt ("pub-…"), derived from the client id. */
-export function adsTxtPublisherId(): string | null {
-  const m = /^ca-(pub-\d{10,20})$/.exec(ADS.client.trim());
-  return m ? m[1] : null;
+export function adsTxtPublisherId(): string {
+  return "pub-5952797612434262";
 }
