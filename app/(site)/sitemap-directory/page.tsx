@@ -58,7 +58,7 @@ export default function SitemapDirectoryPage() {
           {EXAMPLES.map((e) => (
             <Link key={e.slug} href={`/cv-examples/${e.slug}`} className="block rounded-lg border border-slate-200 bg-white p-3 hover:border-emerald-600 text-sm">
               <span className="font-medium text-slate-900">{e.title}</span>
-              <span className="block text-xs text-slate-500">{e.category} · {e.experienceLevel}</span>
+              <span className="block text-xs text-slate-500">{e.category} · {e.level}</span>
             </Link>
           ))}
         </div>
