@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdSlot } from "@/components/ads/AdSlot";
+import { AddThis } from "@/components/social/AddThis";
 import { Faq, type FaqItem } from "@/components/content/Faq";
 import { JsonLd } from "@/components/content/JsonLd";
 import { TemplateThumbnail } from "@/components/cv/TemplateThumbnail";
@@ -120,6 +121,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Top Banner Ad below hero */}
+      <div className="mx-auto max-w-6xl px-4">
+        <AdSlot variant="banner" label="Advertisement" className="my-6" />
+        <AddThis className="my-4" />
+      </div>
 
       {/* How it works */}
       <section aria-labelledby="how" className="mx-auto max-w-6xl px-4 py-16">

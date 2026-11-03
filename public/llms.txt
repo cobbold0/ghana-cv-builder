@@ -1,0 +1,10 @@
+# Ghana CV Builder
+
+> Free online CV and resume builder tailored for Ghanaian students, graduates, and professionals.
+
+## Core Pages & Templates
+- [Ghana CV Builder](https://ghanacv.cobbold.dev/): Online interactive builder with 10 ATS-friendly templates and instant PDF generation.
+- [CV Templates Gallery](https://ghanacv.cobbold.dev/cv-templates): Modern, Classic, Compact, Executive, and Bold templates for Ghanaian job seekers.
+- [CV Examples Directory](https://ghanacv.cobbold.dev/cv-examples): Real CV examples across IT, nursing, teaching, accounting, and sales in Ghana.
+- [How to Write a CV Guide](https://ghanacv.cobbold.dev/how-to-write-a-cv): Comprehensive guide covering National Service Secretariat (NSS) experience, education, and referees.
+- [Ghana CV Format Guide](https://ghanacv.cobbold.dev/cv-format): Recommended sections, layout standards, and length for applications in Ghana.

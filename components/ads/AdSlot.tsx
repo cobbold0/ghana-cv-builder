@@ -3,15 +3,30 @@
 import { useEffect, useRef } from "react";
 import { ADS } from "@/lib/ads";
 
+interface AdSlotProps {
+  variant?: "banner" | "sidebar" | "inline";
+  className?: string;
+  slot?: string;
+  label?: string;
+}
+
 /**
  * A single, clearly labelled ad unit for content pages. Never used inside the
- * CV builder. Renders nothing until an ad client and slot are configured, or
- * a labelled placeholder in development when NEXT_PUBLIC_AD_PLACEHOLDERS=true. Ads show whether or
- * not the visitor consents; without consent they are non-personalised (see lib/consent.ts).
+ * CV builder canvas. Renders once an ad client is configured.
+ * Supports:
+ * - "banner": leaderboard (top/bottom)
+ * - "sidebar": vertical skyscraper for left and right rails
+ * - "inline": in-content rectangle
  */
-export function AdSlot({ className = "" }: { className?: string }) {
+export function AdSlot({
+  variant = "inline",
+  className = "",
+  slot = ADS.slot,
+  label = "Advertisement",
+}: AdSlotProps) {
   const ref = useRef<HTMLModElement>(null);
-  const live = Boolean(ADS.client && ADS.slot);
+  const live = Boolean(ADS.client && (slot || ADS.slot));
+  const activeSlot = slot || ADS.slot;
 
   useEffect(() => {
     if (!live || !ref.current || ref.current.dataset.adsbygoogleStatus) return;
@@ -22,30 +37,51 @@ export function AdSlot({ className = "" }: { className?: string }) {
     }
   }, [live]);
 
+  const variantStyles = {
+    banner: "w-full my-6 min-h-[90px] sm:min-h-[100px] text-center",
+    sidebar: "w-full min-h-[600px] flex flex-col items-center justify-start sticky top-20",
+    inline: "w-full my-8 min-h-[250px] text-center",
+  };
+
   if (live) {
     return (
-      // Hidden entirely when AdSense has no ad to show (e.g. before approval), so no empty box appears.
-      <aside aria-label="Advertisement" className={`my-10 has-[ins[data-ad-status=unfilled]]:hidden ${className}`}>
-        <p className="mb-1 text-center text-[11px] tracking-wide text-slate-500 uppercase">Advertisement</p>
+      <aside aria-label={label} className={`print:hidden overflow-hidden ${variantStyles[variant]} ${className}`}>
+        <p className="mb-1 text-center text-[10px] font-semibold tracking-wider text-slate-500 uppercase">{label}</p>
         <ins
           ref={ref}
-          className="adsbygoogle block min-h-[100px]"
+          className="adsbygoogle block"
+          style={{
+            display: "block",
+            minHeight: variant === "sidebar" ? 600 : variant === "banner" ? 90 : 250,
+          }}
           data-ad-client={ADS.client}
-          data-ad-slot={ADS.slot}
-          data-ad-format="auto"
-          data-full-width-responsive="true"
+          data-ad-slot={activeSlot}
+          data-ad-format={variant === "sidebar" ? "vertical" : "auto"}
+          data-full-width-responsive={variant !== "sidebar" ? "true" : "false"}
         />
       </aside>
     );
   }
-  if (ADS.placeholders) {
+
+  if (ADS.placeholders || process.env.NODE_ENV === "development") {
     return (
-      <aside aria-label="Advertisement placeholder" className={`my-10 ${className}`}>
-        <div className="flex h-[120px] items-center justify-center rounded-lg border border-dashed border-slate-300 text-xs tracking-wide text-slate-500 uppercase">
-          Advertisement placeholder
+      <aside
+        aria-label={`${label} Placeholder`}
+        className={`print:hidden rounded-lg border border-dashed border-slate-300 bg-slate-50 p-2 text-center ${variantStyles[variant]} ${className}`}
+      >
+        <p className="mb-1 text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+          {label} {variant === "sidebar" ? "(Skyscraper)" : variant === "banner" ? "(Leaderboard)" : "(In-Content)"}
+        </p>
+        <div
+          className={`flex w-full items-center justify-center rounded bg-slate-100 text-xs font-medium text-slate-500 ${
+            variant === "sidebar" ? "h-[560px]" : variant === "banner" ? "h-[80px]" : "h-[220px]"
+          }`}
+        >
+          Google AdSense Slot
         </div>
       </aside>
     );
   }
+
   return null;
 }

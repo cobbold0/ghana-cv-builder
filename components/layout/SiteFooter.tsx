@@ -38,6 +38,7 @@ const GROUPS = [
     title: "About",
     links: [
       { href: "/about", label: "About" },
+      { href: "/sitemap-directory", label: "Sitemap directory" },
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms of use" },
       { href: `mailto:${SITE.email}`, label: "Contact" },
@@ -48,26 +49,32 @@ const GROUPS = [
 export function SiteFooter() {
   return (
     <footer className="mt-20 border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
-        {GROUPS.map((g) => (
-          <nav key={g.title} aria-label={g.title}>
-            <h2 className="text-sm font-semibold text-slate-900">{g.title}</h2>
-            <ul className="mt-3 space-y-2">
-              {g.links.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-slate-600 hover:text-slate-900 hover:underline">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
-      </div>
-      <div className="border-t border-slate-200">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} Ghana CV Builder. Your CV is created and stored on your own device.</p>
-          {GA_ID || ADS.client ? <CookieSettingsButton /> : null}
+      <div className="mx-auto max-w-6xl px-4 py-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {GROUPS.map((g) => (
+            <div key={g.title}>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{g.title}</p>
+              <ul className="mt-3 space-y-2">
+                {g.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="text-sm text-slate-600 hover:text-slate-900">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row">
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} {SITE.name}. Free, private CV builder for Ghana.
+          </p>
+          <div className="flex items-center gap-4 text-xs text-slate-500">
+            {GA_ID && <span>Google Analytics</span>}
+            {ADS.client && <span>Google AdSense</span>}
+            <CookieSettingsButton />
+          </div>
         </div>
       </div>
     </footer>

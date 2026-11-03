@@ -16,18 +16,20 @@ export const SITE = {
 export const absoluteUrl = (path = "/") => `${SITE.url}${path === "/" ? "" : path}`;
 
 // Pages that set their own openGraph object don't inherit the root opengraph-image, so reference it explicitly.
-const OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: "Ghana CV Builder — Create a professional CV in minutes" };
+const OG_IMAGE = { url: `${SITE.url}/opengraph-image`, width: 1200, height: 630, alt: "Ghana CV Builder — Create a professional CV in minutes" };
 
 /** Metadata for an indexable page: unique title/description, canonical URL and Open Graph. */
 export function pageMetadata({ title, description, path }: { title: string; description: string; path: string }): Metadata {
+  const canonicalUrl = absoluteUrl(path);
+
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
       description,
-      url: path,
+      url: canonicalUrl,
       siteName: SITE.name,
       type: "website",
       locale: SITE.locale,

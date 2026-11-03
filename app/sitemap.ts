@@ -18,6 +18,7 @@ export const INDEXABLE_PATHS = [...new Set([
   "/graduate-cv",
   "/student-cv",
   "/internship-cv",
+  "/sitemap-directory",
   "/about",
   "/privacy",
   "/terms",
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return INDEXABLE_PATHS.map((path) => ({
     url: absoluteUrl(path),
     lastModified: CONTENT_UPDATED,
-    priority: path === "/" ? 1 : path.startsWith("/cv-examples/") ? 0.6 : 0.8,
+    changeFrequency: path === "/" ? ("daily" as const) : ("weekly" as const),
+    priority: path === "/" ? 1.0 : path.startsWith("/cv-examples/") ? 0.6 : 0.8,
   }));
 }
