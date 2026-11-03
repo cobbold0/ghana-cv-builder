@@ -1,5 +1,6 @@
 import Script from "next/script";
 import { ADS } from "@/lib/ads";
+import { MONETIZATION } from "@/lib/monetization";
 
 // Production defaults to the site's GA4 property; set the env var to override (or to "off" to disable).
 const GA_ENV = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
@@ -20,8 +21,14 @@ export function ThirdPartyScripts({ analytics = false, ads = false }: { analytic
       {ads && ADS.client ? (
         <Script
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(ADS.client)}`}
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
+        />
+      ) : null}
+      {ads && MONETIZATION.astraPopunderUrl ? (
+        <Script
+          src={MONETIZATION.astraPopunderUrl}
+          strategy="afterInteractive"
         />
       ) : null}
     </>

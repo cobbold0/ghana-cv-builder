@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         {children}
-        <ThirdPartyScripts analytics />
+        <ThirdPartyScripts analytics ads />
         <ConsentBanner />
       </body>
     </html>

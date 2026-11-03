@@ -11,6 +11,8 @@ import { clearDraft, draftToJson, loadDraft, parseDraft, saveDraft } from "@/lib
 import { DEFAULT_TEMPLATE, getTemplateInfo, isTemplateId, type TemplateId } from "@/lib/templates/registry";
 import { buttonClass } from "@/lib/ui";
 import { ConfirmDialog } from "./ConfirmDialog";
+import { AdGatedDownloadModal } from "@/components/ads/AdGatedDownloadModal";
+import { useAdGatedDownload } from "@/components/ads/useAdGatedDownload";
 import { fieldId } from "./fields";
 import { Icon } from "./icons";
 import { SectionPanel } from "./SectionPanel";
@@ -152,24 +154,7 @@ export function Builder() {
   };
 
   // ---- PDF export ----
-  const download = async () => {
-    const all = validateCv(cv, { forExport: true });
-    const paths = Object.keys(all);
-    if (paths.length > 0) {
-      setShowAllErrors(true);
-      setView("edit");
-      const first = paths[0];
-      setOpenSections((s) => new Set(s).add(sectionOf(first)));
-      setMessage({ tone: "error", text: `Please fix ${paths.length === 1 ? "1 problem" : `${paths.length} problems`} before downloading. ${all[first]}` });
-      // Open the section and entry containing the field, then focus it.
-      setReveal(first.split(".")[1]);
-      setTimeout(() => {
-        const el = document.getElementById(fieldId(first));
-        el?.focus();
-        el?.scrollIntoView({ block: "center" });
-      }, 50);
-      return;
-    }
+  const executePdfExport = async () => {
     setExporting(true);
     setMessage(null);
     try {
@@ -187,6 +172,31 @@ export function Builder() {
     } finally {
       setExporting(false);
     }
+  };
+
+  const { clickCount, isModalOpen, setIsModalOpen, handleDownloadClick, handleModalConfirm } = useAdGatedDownload({
+    onFinalDownload: executePdfExport,
+  });
+
+  const onDownloadClick = () => {
+    const all = validateCv(cv, { forExport: true });
+    const paths = Object.keys(all);
+    if (paths.length > 0) {
+      setShowAllErrors(true);
+      setView("edit");
+      const first = paths[0];
+      setOpenSections((s) => new Set(s).add(sectionOf(first)));
+      setMessage({ tone: "error", text: `Please fix ${paths.length === 1 ? "1 problem" : `${paths.length} problems`} before downloading. ${all[first]}` });
+      // Open the section and entry containing the field, then focus it.
+      setReveal(first.split(".")[1]);
+      setTimeout(() => {
+        const el = document.getElementById(fieldId(first));
+        el?.focus();
+        el?.scrollIntoView({ block: "center" });
+      }, 50);
+      return;
+    }
+    handleDownloadClick();
   };
 
   const prefetchPdf = () => void import("@/lib/pdf/generate").catch(() => {});
@@ -284,9 +294,22 @@ export function Builder() {
                 if (f) void openBackup(f);
               }}
             />
-            <button type="button" className={buttonClass("primary", "sm", "max-lg:hidden")} onClick={download} onPointerEnter={prefetchPdf} onFocus={prefetchPdf} disabled={!ready || exporting}>
+            <button
+              type="button"
+              className={buttonClass("primary", "sm", "max-lg:hidden")}
+              onClick={onDownloadClick}
+              onPointerEnter={prefetchPdf}
+              onFocus={prefetchPdf}
+              disabled={!ready || exporting}
+            >
               <Icon name="download" className="size-4" />
-              {exporting ? "Preparing PDF…" : "Download PDF"}
+              {exporting
+                ? "Preparing PDF…"
+                : clickCount === 1
+                  ? "Click to Continue (2/3)"
+                  : clickCount === 2
+                    ? "Final Click to Open (3/3)"
+                    : "Download PDF"}
             </button>
           </div>
         </div>
@@ -368,9 +391,21 @@ export function Builder() {
               </button>
             ))}
           </div>
-          <button type="button" className={buttonClass("primary", "md")} onClick={download} onTouchStart={prefetchPdf} disabled={!ready || exporting}>
+          <button
+            type="button"
+            className={buttonClass("primary", "md")}
+            onClick={onDownloadClick}
+            onTouchStart={prefetchPdf}
+            disabled={!ready || exporting}
+          >
             <Icon name="download" className="size-4" />
-            {exporting ? "Preparing…" : "PDF"}
+            {exporting
+              ? "Preparing…"
+              : clickCount === 1
+                ? "Continue (2/3)"
+                : clickCount === 2
+                  ? "Open (3/3)"
+                  : "PDF"}
           </button>
         </div>
       </nav>
@@ -382,6 +417,13 @@ export function Builder() {
         confirmLabel={pending?.kind === "new" ? "Clear and start again" : "Replace"}
         onConfirm={confirmPending}
         onCancel={() => setPending(null)}
+      />
+
+      <AdGatedDownloadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onDownload={handleModalConfirm}
+        fileName={slugifyFileName(cv.personal.fullName)}
       />
     </div>
   );

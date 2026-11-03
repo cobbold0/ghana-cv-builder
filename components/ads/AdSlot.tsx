@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ADS } from "@/lib/ads";
 
 interface AdSlotProps {
@@ -11,12 +11,13 @@ interface AdSlotProps {
 }
 
 /**
- * A single, clearly labelled ad unit for content pages. Never used inside the
- * CV builder canvas. Renders once an ad client is configured.
+ * Responsive Google AdSense unit for Ghana CV Builder.
  * Supports:
  * - "banner": leaderboard (top/bottom)
  * - "sidebar": vertical skyscraper for left and right rails
  * - "inline": in-content rectangle
+ *
+ * Unfilled ads collapse cleanly without showing broken placeholder texts.
  */
 export function AdSlot({
   variant = "inline",
@@ -25,16 +26,28 @@ export function AdSlot({
   label = "Advertisement",
 }: AdSlotProps) {
   const ref = useRef<HTMLModElement>(null);
-  const live = Boolean(ADS.client && (slot || ADS.slot));
-  const activeSlot = slot || ADS.slot;
+  const activeClient = ADS.client || "ca-pub-5952797612434262";
+  const activeSlot = slot || ADS.slot || "1273092714";
+  const live = Boolean(activeClient && activeSlot);
+  const [isUnfilled, setIsUnfilled] = useState(false);
 
   useEffect(() => {
     if (!live || !ref.current || ref.current.dataset.adsbygoogleStatus) return;
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch {
-      /* ad blockers or script failures must not affect the page */
+      /* ad blockers or network issues */
     }
+
+    const ins = ref.current;
+    if (!ins) return;
+    const observer = new MutationObserver(() => {
+      if (ins.getAttribute("data-ad-status") === "unfilled") {
+        setIsUnfilled(true);
+      }
+    });
+    observer.observe(ins, { attributes: true, attributeFilter: ["data-ad-status"] });
+    return () => observer.disconnect();
   }, [live]);
 
   const variantStyles = {
@@ -43,45 +56,30 @@ export function AdSlot({
     inline: "w-full my-8 min-h-[250px] text-center",
   };
 
-  if (live) {
-    return (
-      <aside aria-label={label} className={`print:hidden overflow-hidden ${variantStyles[variant]} ${className}`}>
-        <p className="mb-1 text-center text-[10px] font-semibold tracking-wider text-slate-500 uppercase">{label}</p>
-        <ins
-          ref={ref}
-          className="adsbygoogle block"
-          style={{
-            display: "block",
-            minHeight: variant === "sidebar" ? 600 : variant === "banner" ? 90 : 250,
-          }}
-          data-ad-client={ADS.client}
-          data-ad-slot={activeSlot}
-          data-ad-format={variant === "sidebar" ? "vertical" : "auto"}
-          data-full-width-responsive={variant !== "sidebar" ? "true" : "false"}
-        />
-      </aside>
-    );
+  if (!live || isUnfilled) {
+    return null;
   }
 
-  if (ADS.placeholders || process.env.NODE_ENV === "development") {
-    return (
-      <aside
-        aria-label={`${label} Placeholder`}
-        className={`print:hidden rounded-lg border border-dashed border-slate-300 bg-slate-50 p-2 text-center ${variantStyles[variant]} ${className}`}
-      >
-        <p className="mb-1 text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
-          {label} {variant === "sidebar" ? "(Skyscraper)" : variant === "banner" ? "(Leaderboard)" : "(In-Content)"}
-        </p>
-        <div
-          className={`flex w-full items-center justify-center rounded bg-slate-100 text-xs font-medium text-slate-500 ${
-            variant === "sidebar" ? "h-[560px]" : variant === "banner" ? "h-[80px]" : "h-[220px]"
-          }`}
-        >
-          Google AdSense Slot
-        </div>
-      </aside>
-    );
-  }
-
-  return null;
+  return (
+    <aside
+      aria-label={label}
+      className={`print:hidden overflow-hidden transition-all duration-300 ${variantStyles[variant]} ${className}`}
+    >
+      <p className="mb-1 text-center text-[9px] font-medium tracking-wider text-slate-400 uppercase select-none">
+        {label}
+      </p>
+      <ins
+        ref={ref}
+        className="adsbygoogle block"
+        style={{
+          display: "block",
+          minHeight: variant === "sidebar" ? 600 : variant === "banner" ? 90 : 250,
+        }}
+        data-ad-client={activeClient}
+        data-ad-slot={activeSlot}
+        data-ad-format={variant === "sidebar" ? "vertical" : "auto"}
+        data-full-width-responsive={variant !== "sidebar" ? "true" : "false"}
+      />
+    </aside>
+  );
 }
