@@ -8,9 +8,6 @@ export const MONETIZATION = {
   adsenseSlot: process.env.NEXT_PUBLIC_ADSENSE_SLOT || "1273092714",
 
   // Adsterra (Astra) Smartlink / Direct Link
-  // Click 1 -> Opens Smartlink in a new tab
-  // Click 2 -> Opens Smartlink in a new tab
-  // Click 3 -> Displays Ad-Gated Download Modal with Native Banner Ad + Final Download Button
   astraDirectLink1:
     process.env.NEXT_PUBLIC_ASTRA_DIRECT_LINK_1 ||
     "https://araplhn.org/4/4daf06e24d31c08f4af48d4a94592621",
@@ -22,6 +19,11 @@ export const MONETIZATION = {
   astraPopunderUrl:
     process.env.NEXT_PUBLIC_ASTRA_POPUNDER_URL ||
     "https://abscloud.org/1/e85a0153eed3acc7504ef6ea87b6f593",
+
+  // Adsterra Social Bar Script URL
+  astraSocialBarUrl:
+    process.env.NEXT_PUBLIC_ASTRA_SOCIAL_BAR_URL ||
+    "https://bauval.org/14/f6e97aa7e58122ac85b3ea56525c6420",
 
   // Adsterra Native Banner
   astraNativeBannerScript:

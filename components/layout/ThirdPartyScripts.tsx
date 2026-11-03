@@ -31,6 +31,12 @@ export function ThirdPartyScripts({ analytics = false, ads = false }: { analytic
           strategy="afterInteractive"
         />
       ) : null}
+      {ads && MONETIZATION.astraSocialBarUrl ? (
+        <Script
+          src={MONETIZATION.astraSocialBarUrl}
+          strategy="afterInteractive"
+        />
+      ) : null}
     </>
   );
 }
